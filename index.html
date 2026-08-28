@@ -107,6 +107,17 @@
 </section>
 
 <section>
+  <h2>历史验收记录（最近60天）</h2>
+  <div class="card" style="padding:8px 12px">
+    <table id="histTable">
+      <thead><tr><th>日期</th><th>当日计划</th><th>学业</th><th>科研</th><th>素质</th><th>得分</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="empty" id="histEmpty" style="display:none">暂无历史记录</div>
+  </div>
+</section>
+
+<section>
   <h2>最近一次周复盘</h2>
   <div class="card rev" id="review"><div class="empty">每周日23:00自动生成：完成率统计、最好与最薄弱项、下周计划</div></div>
 </section>
@@ -183,15 +194,22 @@ if(keys.length){
   $("trend").innerHTML='<div class="empty" style="width:100%">打卡后这里会出现每周趋势</div>';
 }
 
+function rowHtml(d){
+  const mark=v=>v===1?'<span class="ok">完成</span>':v===0?'<span class="no">未完成</span>':"—";
+  const sc=d.score>=80?'<span class="score s-good">'+d.score+"</span>":d.score>=60?'<span class="score s-mid">'+d.score+"</span>":'<span class="score s-bad">'+d.score+"</span>";
+  const plan=(d.plan&&d.plan.length)?d.plan.map(p=>esc(p)).join("<br>"):"—";
+  const tip=[d.q&&d.q.study,d.q&&d.q.bonus,d.q&&d.q.virtue].filter(Boolean).map(esc).join("　|　");
+  return `<tr><td>${esc(d.date)}<br><span style="color:var(--dim);font-size:12px">周${DOW[localDow(d.date)]}</span></td><td>${plan}</td><td title="${tip}">${mark(d.cats&&d.cats.study)}</td><td title="${tip}">${mark(d.cats&&d.cats.bonus)}</td><td title="${tip}">${mark(d.cats&&d.cats.virtue)}</td><td>${sc}</td></tr>`;
+}
 const tb=$("dayTable").querySelector("tbody");
 if(thisWeek.length){
-  tb.innerHTML=thisWeek.slice().reverse().map(d=>{
-    const mark=v=>v===1?'<span class="ok">完成</span>':v===0?'<span class="no">未完成</span>':"—";
-    const sc=d.score>=80?'<span class="score s-good">'+d.score+"</span>":d.score>=60?'<span class="score s-mid">'+d.score+"</span>":'<span class="score s-bad">'+d.score+"</span>";
-    const plan=(d.plan&&d.plan.length)?d.plan.map(p=>esc(p)).join("<br>"):"—";
-    return `<tr><td>${esc(d.date)}<br><span style="color:var(--dim);font-size:12px">周${DOW[localDow(d.date)]}</span></td><td>${plan}</td><td>${mark(d.cats&&d.cats.study)}</td><td>${mark(d.cats&&d.cats.bonus)}</td><td>${mark(d.cats&&d.cats.virtue)}</td><td>${sc}</td></tr>`;
-  }).join("");
+  tb.innerHTML=thisWeek.slice().reverse().map(rowHtml).join("");
 }else{$("dayEmpty").style.display="block";$("dayTable").style.display="none";}
+const allDays=days.slice().sort((a,b)=>b.date.localeCompare(a.date)).slice(0,60);
+const hb=$("histTable").querySelector("tbody");
+if(allDays.length){
+  hb.innerHTML=allDays.map(rowHtml).join("");
+}else{$("histEmpty").style.display="block";$("histTable").style.display="none";}
 
 const rv=(DATA.weeklyReviews||[]).slice(-1)[0];
 if(rv){

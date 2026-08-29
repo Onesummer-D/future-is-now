@@ -16,36 +16,39 @@
   body{background:var(--bg);color:var(--ink);padding:32px 20px;max-width:880px;margin:0 auto;font-size:16px;line-height:1.7}
   a{color:var(--acc);text-decoration:none;border-bottom:1px solid var(--acc)}
   header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:22px}
-  h1{font-family:var(--serif);font-size:30px;font-weight:700;letter-spacing:2px}
+  h1{font-family:var(--serif);font-size:40px;font-weight:700;letter-spacing:3px}
   h1::after{content:".";color:var(--acc)}
-  h1 .en{font-size:12px;letter-spacing:4px;color:var(--dim);font-weight:400;margin-left:12px;vertical-align:3px}
-  .upd{font-size:14px;color:var(--dim)}
-  section{margin-bottom:26px}
-  h2{font-size:13px;letter-spacing:3px;color:var(--dim);font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  h1 .en{font-size:13px;letter-spacing:4px;color:var(--dim);font-weight:400;margin-left:12px;vertical-align:3px}
+  .upd{font-size:14px;color:var(--dim);font-family:var(--serif);letter-spacing:1px}
+  section{margin-bottom:32px}
+  h2{font-size:14px;letter-spacing:4px;color:var(--dim);font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
   h2::after{content:"";flex:1;border-top:1px solid var(--line2)}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px 20px}
+  h2 b{font-family:var(--serif);color:var(--acc);font-weight:600;font-size:17px;margin-right:12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:22px 24px}
   .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
   .stat .lab{font-size:14px;color:var(--dim);letter-spacing:1px}
-  .stat .num{font-size:36px;font-weight:700;line-height:1.2}
+  .stat .num{font-family:var(--serif);font-size:46px;font-weight:700;line-height:1.15}
+  .stat .num::after{content:".";color:var(--acc)}
   .stat .num small{font-size:15px;color:var(--dim);font-weight:400;margin-left:4px}
   .stat .foot{font-size:14px;color:var(--dim)}
   .ring{display:flex;align-items:center;gap:16px}
   .ring svg{transform:rotate(-90deg)}
-  .ring .rn{font-size:30px;font-weight:700}
+  .ring .rn{font-family:var(--serif);font-size:34px;font-weight:700}
+  .ring .rn::after{content:".";color:var(--acc)}
   .ring .rs{font-size:14px;color:var(--dim)}
   .kpis{display:flex;flex-direction:column;gap:8px}
   .kpi{display:flex;justify-content:space-between;align-items:center;font-size:15px}
   .kpi b{font-weight:600}
   .kbar{flex:1;height:4px;background:var(--line);border-radius:2px;margin:0 12px;overflow:hidden}
   .kbar i{display:block;height:100%}
-  .bars{display:flex;align-items:flex-end;gap:14px;height:130px;padding-top:8px}
+  .bars{display:flex;align-items:flex-end;gap:20px;height:150px;padding-top:10px}
   .bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;height:100%}
-  .bar .v{font-size:14px;font-weight:600}
+  .bar .v{font-family:var(--serif);font-size:16px;font-weight:700}
   .bar .col{width:100%;border-radius:3px 3px 0 0;min-height:4px}
-  .bar .w{font-size:13px;color:var(--dim)}
+  .bar .w{font-size:13px;letter-spacing:1px;color:var(--dim)}
   table{width:100%;border-collapse:collapse;font-size:15px}
   th{color:var(--dim);text-align:left;font-weight:600;padding:8px;border-bottom:2px solid var(--line2);font-size:14px}
-  td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  td{padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
   .ok{color:var(--ok);font-weight:600} .no{color:var(--bad);font-weight:600}
   .score{font-weight:700}
   .s-good{color:var(--ok)} .s-mid{color:var(--warn)} .s-bad{color:var(--bad)}

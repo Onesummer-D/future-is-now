@@ -182,7 +182,7 @@ $("tM").value=settings.tM;$("tR").value=settings.tR;$("tE").value=settings.tE;
 
 // ---------- header ----------
 $("dBig").textContent=`${today.getMonth()+1}.${today.getDate()}`;
-$("dSub").textContent=`星期${DOW[today.getDay()]} · 教学第${semWeek}周 · ${DATA.anchors.semester}`;
+$("dSub").textContent=`星期${DOW[today.getDay()]} · 教学第${semWeek}周`;
 const dday=Math.ceil((new Date(2026,8,10)-today)/864e5);
 $("dday").textContent=dday>0?"D-"+dday:"已汇报 ✓";
 $("streakTxt").textContent=`连续打卡 ${DATA.streak.current} 天 · 历史最佳 ${DATA.streak.best} 天`;

@@ -2,7 +2,7 @@
 // days[]: {date,dow,week,plan:[],q:{study,mistakes,bonus,virtue},cats:{study,bonus,virtue},score,note}
 // researchPlan: 日期 → {time, items:[{t,tag}], focus}  tag ∈ 精读/泛读/代码/输出/汇报/其他
 const DATA = {
-  meta: { name: "", version: 4, updated: "2026-08-28", workbench: "工作台.html", dashboard: "dashboard.html" },
+  meta: { name: "", version: 4, updated: "2026-08-30", workbench: "工作台.html", dashboard: "dashboard.html" },
   anchors: {
     semester: "2026-2027 大二上（8.31开始上课）",
     gpaTarget: "期末加权≥91 → 累计绩点≥3.71（大二末3.80）",
@@ -11,7 +11,9 @@ const DATA = {
   },
   report: { title: "CV方向初识 · 第一次组内汇报", date: "2026-09-10" },
   streak: { current: 0, best: 0 },
-  days: [],
+  days: [
+    { date: "2026-08-29", dow: "六", week: 202635, plan: ["整理两个社会实践项目的结项成果", "班委竞选PPT×2版（班长版+生活委员版）", "数媒大赛「官渡之战」继续推进", "数媒大赛：和黄想一起出点子", "大创分工：初步规划"], q: { study: "未做", mistakes: "—", bonus: "五项全部未做", virtue: "—" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: 0, note: "用户主动申报全部未做，全天未执行，已顺延" },
+  ],
   weeklyReviews: [],
   weekPlans: {
     "2026-08-24": {
@@ -34,6 +36,11 @@ const DATA = {
       { t: "30min速读 ResNet (CVPR16)，搞懂残差连接", tag: "泛读" },
       { t: "输出「CV领域地图」笔记≥600字（分支+模型时间线手绘）", tag: "输出" },
       { t: "装Anaconda+PyTorch+CUDA，torch.cuda.is_available()=True", tag: "代码" },
+      { t: "〔顺延〕整理两个社会实践项目的结项成果", tag: "其他" },
+      { t: "〔顺延〕班委竞选PPT×2版（班长版+生活委员版）", tag: "其他" },
+      { t: "〔顺延〕数媒大赛「官渡之战」继续推进", tag: "其他" },
+      { t: "〔顺延〕数媒大赛：和黄想一起出点子", tag: "其他" },
+      { t: "〔顺延〕大创分工：初步规划", tag: "其他" },
     ]},
     "2026-08-31": { time: "开学第一天，只排2h", focus: "ViT新范式", items: [
       { t: "精读《An Image is Worth 16x16 Words》(ViT, ICLR 2021)", tag: "精读" },

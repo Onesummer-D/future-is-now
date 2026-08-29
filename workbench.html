@@ -67,8 +67,9 @@
   .tom li{margin:5px 0 5px 18px}
   .tom b{color:var(--ink)}
   .tom li.carry{color:var(--acc)}
+  .tom li.course{color:var(--acc);font-weight:700}
   /* ---------- evening ---------- */
-  .evq{font-size:17px;color:var(--ink);margin-bottom:14px;line-height:1.9}
+  .evq{font-size:16px;color:var(--ink);margin-bottom:14px;line-height:2}
   .evbtns{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
   .copied{color:var(--ok);font-size:13px;display:none}
   /* ---------- reminders ---------- */
@@ -122,11 +123,10 @@
 <section>
   <h2><b>05</b>晚间验收 · 00:30 发给自动化助手</h2>
   <div class="card">
-    <div class="evq">对照上面勾选情况，回复自动化助手的三问即可（一句话就行）：
-    <br>① 学业：作业全清了吗？错题/复习多少？
+    <div class="evq">
+    ① 学业：作业全清了吗？错题/复习多少？
     <br>② 科研：论文读了什么？笔记多少字？代码进度？
-    <br>③ 素质：锻炼/志愿了吗？
-    <br>或者直接复制下面生成的验收文本粘贴过去，更快。</div>
+    <br>③ 素质：锻炼/志愿了吗？</div>
     <div class="evbtns">
       <button id="copyBtn">生成验收文本并复制</button>
       <button class="ghost" id="openDash">看趋势与历史 →</button>
@@ -146,9 +146,10 @@
     <div class="setrow">
       <button class="ghost" id="notifyBtn">开启系统通知</button>
       <span id="notifyState" style="color:var(--dim);font-size:13px"></span>
-      <label style="font-size:13px;color:var(--dim)">自定义背景图（选填，粘贴图片链接）</label>
-      <input type="text" id="bgUrl" placeholder="https://... 图片地址，粘贴后点应用">
-      <div style="display:flex;gap:8px"><button class="ghost" id="bgApply">应用背景</button><button class="ghost" id="bgClear">清除背景</button></div>
+      <label style="font-size:13px;color:var(--dim)">自定义背景图（上传本地照片，或粘贴图片链接）</label>
+      <input type="file" id="bgFile" accept="image/*" style="font-size:13px;max-width:280px">
+      <input type="text" id="bgUrl" placeholder="或粘贴图片链接 https://...">
+      <div style="display:flex;gap:8px"><button class="ghost" id="bgApply">应用链接背景</button><button class="ghost" id="bgClear">清除背景</button></div>
     </div>
   </div>
 </section>
@@ -266,7 +267,7 @@ let tmList=[];
 function escT(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 function renderTomorrow(){
   tmList=[...baseTm];
-  $("tomorrow").innerHTML=tmList.length?(tmList.map(t=>`<li class="${t.startsWith("〔顺延〕")?"carry":""}">${escT(t)}</li>`).join("")+"<li><b>"+(tmRp?("科研块 "+tmRp.time):"")+"</b></li>"):"<li>暂无（今晚23:00验收后会自动生成）</li>";
+  $("tomorrow").innerHTML=tmList.length?(tmList.map(t=>`<li class="${(t.startsWith("（")||/课/.test(t))?"course":""}">${escT(t)}</li>`).join("")+"<li><b>"+(tmRp?("科研块 "+tmRp.time):"")+"</b></li>"):"<li>暂无（每晚00:30验收后会自动生成）</li>";
 }
 renderTomorrow();
 
@@ -325,6 +326,7 @@ const bg=$("bgimg"),bgUrl=$("bgUrl");
 function applyBg(v){if(v){bg.style.backgroundImage='url("'+v+'")';bg.style.display="block";}else{bg.style.display="none";}}
 applyBg(LS.get("wb_bg",""));
 $("bgApply").onclick=()=>{const v=bgUrl.value.trim();if(!v)return;LS.set("wb_bg",v);applyBg(v);bgUrl.value="";};
+$("bgFile").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const d=r.result;if(d.length>4500000){bgUrl.value="这张图约"+Math.round(f.size/1048576*10)/10+"MB，太大了，请压缩后再传";}else{LS.set("wb_bg",d);applyBg(d);}};r.readAsDataURL(f);};
 $("bgClear").onclick=()=>{LS.set("wb_bg","");applyBg("");};
 </script>
 </body>

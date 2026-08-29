@@ -35,7 +35,7 @@
   /* ---------- timetable ---------- */
   .classes{display:flex;gap:8px;flex-wrap:wrap}
   .cls{border:1px solid var(--line2);border-left:3px solid var(--acc);border-radius:3px;padding:7px 12px;font-size:13px;background:var(--card)}
-  .cls b{display:block;font-size:14px} .cls span{color:var(--dim);font-size:13px}
+  .cls b{display:block;font-size:16px} .cls span{color:var(--dim);font-size:14px}
   .none-today{color:var(--dim);font-size:13px}
   /* ---------- checklist ---------- */
   .group{margin-bottom:14px}
@@ -47,14 +47,15 @@
   .item.done .box{background:var(--acc);border-color:var(--acc)}
   .item.done .box::after{content:"";position:absolute;left:4px;top:0px;width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(43deg)}
   .item.done .txt{color:var(--faint);text-decoration:line-through}
-  .txt{font-size:15px}
+  .txt{font-size:16px}
   .tag{display:inline-block;font-size:11px;color:var(--dim);border:1px solid var(--line2);border-radius:2px;padding:0 5px;margin-right:7px;vertical-align:1px}
   .tag.精读,.tag.代码,.tag.汇报{color:var(--acc);border-color:var(--acc)}
   .pbar{height:3px;background:var(--line);border-radius:2px;margin-top:12px;overflow:hidden}
   .pbar i{display:block;height:100%;background:var(--ok);transition:width .25s}
-  .prate{font-size:13px;color:var(--dim);margin-top:6px;font-weight:600}
+  .prate{font-size:14px;color:var(--dim);margin-top:6px;font-weight:600}
   .addrow{display:flex;gap:8px;margin-top:10px}
-  input[type=text],textarea{background:var(--card);border:1px solid var(--line2);border-radius:3px;padding:8px 10px;font-size:13px;color:var(--ink);width:100%}
+  input[type=text],input[type=time],input[type=file],textarea{background:var(--card);border:1px solid var(--line2);border-radius:3px;padding:8px 10px;font-size:16px;color:var(--ink);width:100%}
+  input[type=time]{width:auto;color-scheme:dark light}
   input[type=text]:focus,textarea:focus{outline:none;border-color:var(--acc)}
   .addrow input{flex:1}
   button{background:var(--ink);color:#fff;border:none;border-radius:3px;padding:8px 14px;font-size:13px;cursor:pointer}
@@ -63,7 +64,7 @@
   button.ghost:hover{background:#efe9dc}
   /* ---------- notes / tomorrow ---------- */
   textarea{min-height:64px;resize:vertical}
-  .tom{font-size:15px;color:var(--ink);line-height:1.7}
+  .tom{font-size:16px;color:var(--ink);line-height:1.7}
   .tom li{margin:5px 0 5px 18px}
   .tom b{color:var(--ink)}
   .tom li.carry{color:var(--acc)}
@@ -73,7 +74,7 @@
   .evbtns{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
   .copied{color:var(--ok);font-size:13px;display:none}
   /* ---------- reminders ---------- */
-  .setrow{display:flex;flex-direction:column;align-items:flex-start;gap:12px;font-size:14px;margin-bottom:10px}
+  .setrow{display:flex;flex-direction:column;align-items:flex-start;gap:12px;font-size:16px;margin-bottom:10px}
   .setrow label{display:flex;align-items:center;gap:6px;cursor:pointer}
   .setrow input[type=time]{border:1px solid var(--line2);border-radius:3px;padding:3px 6px;background:var(--card)}
   .switch{width:34px;height:18px;border-radius:10px;background:var(--line2);position:relative;cursor:pointer;transition:background .15s}
@@ -139,14 +140,14 @@
   <h2><b>06</b>提醒设置</h2>
   <div class="card">
     <div class="setrow">
-      <label><span class="switch" id="swM"><i></i></span><input type="time" id="tM" value="08:00"> 早报：今天三件事</label>
-      <label><span class="switch" id="swR"><i></i></span><input type="time" id="tR" value="19:00"> 科研块开始</label>
-      <label><span class="switch" id="swE"><i></i></span><input type="time" id="tE" value="22:40"> 晚间核对清单</label>
+      <label><span class="switch" id="swM"><i></i></span>早报：今天三件事　<input type="time" id="tM" value="08:00"></label>
+      <label><span class="switch" id="swR"><i></i></span>科研块开始　<input type="time" id="tR" value="19:00"></label>
+      <label><span class="switch" id="swE"><i></i></span>晚间核对清单　<input type="time" id="tE" value="22:40"></label>
     </div>
     <div class="setrow">
       <button class="ghost" id="notifyBtn">开启系统通知</button>
-      <span id="notifyState" style="color:var(--dim);font-size:13px"></span>
-      <label style="font-size:13px;color:var(--dim)">自定义背景图（上传本地照片，或粘贴图片链接）</label>
+      <span id="notifyState" style="color:var(--dim);font-size:14px"></span>
+      <label style="font-size:16px;color:var(--dim)">自定义背景图（上传本地照片，或粘贴图片链接）</label>
       <input type="file" id="bgFile" accept="image/*" style="font-size:13px;max-width:280px">
       <input type="text" id="bgUrl" placeholder="或粘贴图片链接 https://...">
       <div style="display:flex;gap:8px"><button class="ghost" id="bgApply">应用链接背景</button><button class="ghost" id="bgClear">清除背景</button></div>

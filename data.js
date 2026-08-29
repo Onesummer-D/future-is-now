@@ -7,7 +7,7 @@ const DATA = {
     semester: "2026-2027 大二上（8.31开始上课）",
     gpaTarget: "期末加权≥91 → 累计绩点≥3.71（大二末3.80）",
     courseFloor: "每门≥80底线；数理类≥85；强项课93+",
-    semesterGoals: ["蓝桥杯报名(10月下旬)+每日刷题", "12月CET-6首考500+", "科研: 9.10首汇报, 之后每周精读1篇+泛读2篇"],
+    semesterGoals: ["蓝桥杯报名(10月下旬)+每日刷题", "12月CET-6首考500+", "科研: 9.10首汇报(8页8-10分钟), 之后每周1深读+2扫描+双周简报, 证据卡10分制"],
   },
   report: { title: "CV方向初识 · 第一次组内汇报", date: "2026-09-10" },
   streak: { current: 0, best: 0 },
@@ -31,67 +31,66 @@ const DATA = {
     },
   },
   researchPlan: {
-    "2026-08-30": { time: "建议9:30-12:00 + 14:00-16:00", focus: "CV全景 + 环境搭建", items: [
-      { t: "精读《A Survey of the Recent Architectures of Deep CNNs》(AI Review 2022)", tag: "精读" },
-      { t: "30min速读 ResNet (CVPR16)，搞懂残差连接", tag: "泛读" },
-      { t: "输出「CV领域地图」笔记≥600字（分支+模型时间线手绘）", tag: "输出" },
-      { t: "装Anaconda+PyTorch+CUDA，torch.cuda.is_available()=True", tag: "代码" },
+    "2026-08-30": { time: "建议9:30-12:00 + 14:00-16:00（标准3h，上限4h）", focus: "M0 环境卡日", items: [
+      { t: "搭建 conda/venv + PyTorch + Git，跑通 torchvision smoke test", tag: "代码" },
+      { t: "速读 ResNet (CVPR16) 动机与残差块，能画出残差连接", tag: "泛读" },
+      { t: "输出 M0 环境卡：版本/设备/最小前向结果/仓库首个commit", tag: "输出" },
       { t: "〔顺延〕整理两个社会实践项目的结项成果", tag: "其他" },
       { t: "〔顺延〕班委竞选PPT×2版（班长版+生活委员版）", tag: "其他" },
       { t: "〔顺延〕数媒大赛「官渡之战」继续推进", tag: "其他" },
       { t: "〔顺延〕数媒大赛：和黄想一起出点子", tag: "其他" },
       { t: "〔顺延〕大创分工：初步规划", tag: "其他" },
     ]},
-    "2026-08-31": { time: "开学第一天，只排2h", focus: "ViT新范式", items: [
-      { t: "精读《An Image is Worth 16x16 Words》(ViT, ICLR 2021)", tag: "精读" },
-      { t: "输出 ViT vs CNN 对比笔记≥500字", tag: "输出" },
+    "2026-08-31": { time: "开学第一天，标准3h", focus: "机制读ViT + 训练框架", items: [
+      { t: "机制读 ViT (ICLR 2021)：patch/token/attention 输入输出，读模型图与公式1", tag: "精读" },
+      { t: "搭 CIFAR-10 小CNN vs ResNet18 共同训练框架", tag: "代码" },
+      { t: "输出一页实验协议：数据划分/seed/epoch/指标/唯一变量", tag: "输出" },
       { t: "软工导论/共同体/概率论第一课，记录各课考核方式", tag: "其他" },
       { t: "（晚软编实践课）", tag: "其他" },
     ]},
-    "2026-09-01": { time: "建议19:00-21:00", focus: "第一个代码里程碑", items: [
-      { t: "跑通 CIFAR-10+ResNet18 训练demo（里程碑M1），截图训练曲线", tag: "代码" },
-      { t: "泛读 ConvNeXt (CVPR 2022)，输出200字笔记", tag: "泛读" },
-      { t: "LeetCode 3题", tag: "其他" },
+    "2026-09-01": { time: "19:00-22:00", focus: "实验日 M1", items: [
+      { t: "完成 M1 分类对照：小CNN vs ResNet18，固定seed，曲线+混淆矩阵+3个错误样本", tag: "代码" },
+      { t: "输出实验卡 M1（同条件可重跑/结果表/错误案例，不追高精度）", tag: "输出" },
+      { t: "LeetCode 3题（竞赛线启动：STL/排序/前缀和/双指针/二分）", tag: "其他" },
     ]},
-    "2026-09-02": { time: "上午空档+晚19:00-21:00", focus: "动作识别路线图", items: [
-      { t: "精读《Multimodal vision-based HAR: a comprehensive review》(AI Review 2024)", tag: "精读" },
-      { t: "输出动作识别技术路线图笔记≥500字", tag: "输出" },
+    "2026-09-02": { time: "论文日 19:00-22:00", focus: "深读导师主线", items: [
+      { t: "深读 Dynamic Interaction Dilation (TMM 2024)：交互点击如何影响人体解析", tag: "精读" },
+      { t: "输出论文证据卡 P1（10分制≥7分：输入/交互循环/DD-Module/AIE-Block/指标）", tag: "输出" },
     ]},
-    "2026-09-03": { time: "建议19:00-21:00", focus: "掩码视频建模", items: [
-      { t: "精读 VideoMAE (NeurIPS 2022)", tag: "精读" },
-      { t: "输出方法拆解笔记≥500字（tube masking为什么省算力）", tag: "输出" },
+    "2026-09-03": { time: "19:00-22:00", focus: "视频理解机制", items: [
+      { t: "深读 VideoMAE V2（难则 VideoMAE）：时序采样/tube masking/预训练微调", tag: "精读" },
+      { t: "准备视频推理环境；输出视频模型机制图（clip采样→logits张量流）+3个算力风险", tag: "输出" },
     ]},
-    "2026-09-04": { time: "建议19:00-21:00", focus: "进入导师方向：talking head", items: [
-      { t: "精读 SadTalker (CVPR 2023)", tag: "精读" },
-      { t: "泛读 LivePortrait (2024, arXiv:2407.03168)", tag: "泛读" },
-      { t: "输出 talking-head pipeline 笔记≥500字", tag: "输出" },
+    "2026-09-04": { time: "19:00-22:00", focus: "实验日 M2", items: [
+      { t: "完成 M2：预训练 R3D-18/SlowFast 推理3-5个短视频；改采样间隔或clip长度", tag: "代码" },
+      { t: "输出实验卡 M2：top-k/两组采样设置/失败案例（明确是推理实验）", tag: "输出" },
+      { t: "竞赛：专题45min + 3题105min + 错题30min", tag: "其他" },
     ]},
-    "2026-09-05": { time: "周六3h", focus: "数字人前沿扫描 + 启动汇报", items: [
-      { t: "泛读 GaussianAvatars (CVPR 2024, arXiv:2312.02069)", tag: "泛读" },
-      { t: "泛读 VASA-1 (NeurIPS 2024, arXiv:2404.10667)，选读Teller(CVPR 2025)", tag: "泛读" },
-      { t: "输出数字人三条路线趋势清单 + 汇报PPT大纲v1", tag: "输出" },
+    "2026-09-05": { time: "周六长块 3h", focus: "深读 ContextBLIP", items: [
+      { t: "深读 ContextBLIP (ACL Findings 2024)：intra/inter-context alignment", tag: "精读" },
+      { t: "浏览官方仓库估算复现成本（不重训练）；输出论文证据卡 P2", tag: "输出" },
     ]},
-    "2026-09-06": { time: "周日3h", focus: "代码里程碑M2 + PPT", items: [
-      { t: "跑通 MediaPipe 实时姿态/动作demo（M2），录屏", tag: "代码" },
-      { t: "PPT v0.5：领域地图/演进/动作识别", tag: "汇报" },
+    "2026-09-06": { time: "周日 复盘+实验", items: [
+      { t: "机制读 CLIP + 深读 CAPT 或 Spotlighter", tag: "精读" },
+      { t: "20张小样本 prompt 敏感性实验；输出实验卡 M3（≥3套prompt/混淆对/零样本预测表）", tag: "代码" },
+      { t: "周复盘45min + 下周设计30min", tag: "其他" },
     ]},
-    "2026-09-07": { time: "1.5h", focus: "PPT完成 + 首次周报", items: [
-      { t: "PPT v1 全部页完成（含数字人趋势页）", tag: "汇报" },
-      { t: "给导师发简短周报邮件（本周读了什么+1个疑问）", tag: "汇报" },
-      { t: "论文笔记归档进 GitHub cv-onboarding 仓库", tag: "其他" },
+    "2026-09-07": { time: "开学周一", items: [
+      { t: "结构化扫描 SinColor (TIP 2026) 与最新交互分割论文", tag: "泛读" },
+      { t: "整理高老师四条公开研究线，选汇报重点一篇；输出方向矩阵 v1", tag: "输出" },
+      { t: "（Python/PyTorch 地基60min + 日志30min）", tag: "其他" },
     ]},
-    "2026-09-08": { time: "1.5h", focus: "定稿", items: [
-      { t: "PPT定稿", tag: "汇报" },
-      { t: "demo演示流程自查，录屏备份防现场翻车", tag: "汇报" },
+    "2026-09-08": { time: "19:00-22:00", focus: "汇报材料日", items: [
+      { t: "做8页PPT（每页一个结论式标题）；整理仓库README；M1/M2/M3只保留最可信两项", tag: "汇报" },
+      { t: "输出 PPT v1 + demo录屏备份", tag: "输出" },
     ]},
-    "2026-09-09": { time: "傍晚1h", focus: "彩排", items: [
-      { t: "预约/确认导师明天时间", tag: "汇报" },
-      { t: "计时彩排≤15min，按彩排修改", tag: "汇报" },
-      { t: "准备3个请教问题写进PPT末页", tag: "汇报" },
+    "2026-09-09": { time: "傍晚+晚", focus: "彩排日", items: [
+      { t: "两次计时彩排（≤10分钟）；「老师追问清单」自测；向老师确认汇报时间", tag: "汇报" },
+      { t: "输出 PPT v2 + 问答卡", tag: "输出" },
     ]},
-    "2026-09-10": { time: "汇报日", focus: "第一次组内汇报", items: [
-      { t: "带齐：PPT+demo（含录屏备份）+论文清单+3个问题", tag: "汇报" },
-      { t: "汇报后记录老师反馈，列入下周计划", tag: "其他" },
+    "2026-09-10": { time: "汇报日", focus: "首次汇报", items: [
+      { t: "完成首次汇报（8页、8-10分钟）；现场记录老师的方向/任务/代码/算力/汇报节奏建议", tag: "汇报" },
+      { t: "会后2小时内把反馈转成 继续/停止/待确认 三栏；输出导师反馈记录", tag: "其他" },
     ]},
   },
 };

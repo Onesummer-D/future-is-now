@@ -20,7 +20,7 @@
   .date-serif{font-family:var(--serif);font-size:46px;line-height:1;letter-spacing:1px}
   .date-serif::after{content:".";color:var(--acc)}
   .brand{font-family:var(--serif);font-size:14px;letter-spacing:2px;color:var(--acc);margin-bottom:14px}
-  #bgimg{position:fixed;inset:0;background:center/cover no-repeat;opacity:.14;z-index:-1;display:none}
+  #bgimg{position:fixed;inset:0;background:center/cover no-repeat;opacity:.3;z-index:-1;display:none}
   .date-sub{color:var(--dim);font-size:14px;margin-top:6px}
   .hd-right{text-align:right}
   .dday{font-family:Georgia,serif;font-size:30px}
@@ -321,9 +321,55 @@ setInterval(()=>{
   });
 },15000);
 
-// ---------- 自定义背景图 ----------
+// ---------- 自定义背景图 + 壁纸取色主题 ----------
 const bg=$("bgimg"),bgUrl=$("bgUrl");
-function applyBg(v){if(v){bg.style.backgroundImage='url("'+v+'")';bg.style.display="block";}else{bg.style.display="none";}}
+const THEME_DEFAULT={bg:"#f2ede1",card:"#fffefa",line:"#e5e0d5",line2:"#d5cebf",ink:"#26231e",dim:"#5c5344",faint:"#8a8272",acc:"#b4532a"};
+function setVars(o){for(const k in o)document.documentElement.style.setProperty("--"+k,o[k]);}
+function resetTheme(){setVars(THEME_DEFAULT);bg.style.opacity=.3;}
+function rgb2hsl(r,g,b){r/=255;g/=255;b/=255;const mx=Math.max(r,g,b),mn=Math.min(r,g,b);let h=0,s=0;const l=(mx+mn)/2;if(mx!==mn){const d=mx-mn;s=l>.5?d/(2-mx-mn):d/(mx+mn);switch(mx){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;default:h=(r-g)/d+4;}h*=60;}return [Math.round(h),s,l];}
+function themeFromImage(img){
+  const c=document.createElement("canvas");c.width=50;c.height=50;
+  const x=c.getContext("2d");x.drawImage(img,0,0,50,50);
+  let d;try{d=x.getImageData(0,0,50,50).data;}catch(e){return null;}
+  const bins={};let rs=0,gs=0,bs=0,n=0;
+  for(let i=0;i<d.length;i+=4){
+    const r=d[i],g=d[i+1],b=d[i+2];rs+=r;gs+=g;bs+=b;n++;
+    if(d[i+3]<128)continue;
+    const key=((r>>4)<<8)|((g>>4)<<4)|(b>>4);bins[key]=(bins[key]||0)+1;
+  }
+  const lum=(0.299*rs+0.587*gs+0.114*bs)/255/n;
+  let best=null,bestScore=0;
+  for(const k in bins){
+    const r=((k>>8)&15)*17+8,g=((k>>4)&15)*17+8,b=(k&15)*17+8;
+    const mx=Math.max(r,g,b),mn=Math.min(r,g,b);
+    const sat=mx===0?0:(mx-mn)/mx;
+    const score=bins[k]*(0.25+sat);
+    if(score>bestScore){bestScore=score;best=[r,g,b,sat];}
+  }
+  let h=18,s=.62,l=.42;
+  if(best&&best[3]>0.18){const t=rgb2hsl(best[0],best[1],best[2]);h=t[0];s=Math.min(.78,Math.max(.45,t[1]));l=Math.min(.50,Math.max(.34,t[2]));}
+  const H=Math.round(h),SP=Math.round(s*100);
+  if(lum<0.45){
+    return {dark:true,vars:{
+      bg:`hsl(${H},12%,10%)`,card:`hsl(${H},10%,15%)`,line:`hsl(${H},8%,24%)`,line2:`hsl(${H},8%,30%)`,
+      ink:`hsl(${H},18%,90%)`,dim:`hsl(${H},10%,68%)`,faint:`hsl(${H},8%,52%)`,
+      acc:`hsl(${H},${SP}%,${Math.min(68,Math.round(l*100+14))}%)`}};
+  }
+  return {dark:false,vars:{
+    bg:`hsl(${H},${Math.min(40,Math.round(s*55))}%,93%)`,card:`hsl(${H},32%,98%)`,
+    line:`hsl(${H},18%,85%)`,line2:`hsl(${H},16%,78%)`,
+    ink:`hsl(${H},18%,14%)`,dim:`hsl(${H},10%,32%)`,faint:`hsl(${H},8%,48%)`,
+    acc:`hsl(${H},${SP}%,${Math.round(l*100)}%)`}};
+}
+function applyBg(v){
+  if(!v){bg.style.display="none";bg.style.opacity=.3;resetTheme();return;}
+  bg.style.backgroundImage='url("'+v+'")';bg.style.display="block";
+  const im=new Image();
+  im.onload=()=>{const t=themeFromImage(im);
+    if(t){setVars(t.vars);bg.style.opacity=t.dark?0.5:0.35;}else{resetTheme();bg.style.opacity=.3;}};
+  im.onerror=()=>{resetTheme();bg.style.opacity=.3;};
+  im.src=v;
+}
 applyBg(LS.get("wb_bg",""));
 $("bgApply").onclick=()=>{const v=bgUrl.value.trim();if(!v)return;LS.set("wb_bg",v);applyBg(v);bgUrl.value="";};
 $("bgFile").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const d=r.result;if(d.length>4500000){bgUrl.value="这张图约"+Math.round(f.size/1048576*10)/10+"MB，太大了，请压缩后再传";}else{LS.set("wb_bg",d);applyBg(d);}};r.readAsDataURL(f);};

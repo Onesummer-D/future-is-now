@@ -9,13 +9,15 @@
   :root{
     --bg:#f6f4ee; --card:#fffefa; --line:#e5e0d5; --line2:#d5cebf;
     --ink:#26231e; --dim:#57503f; --faint:#8a8272;
+    --serif:Georgia,"Source Han Serif SC","Noto Serif SC",serif;
     --acc:#b4532a; --ok:#3a6b4f; --warn:#a06a2e; --bad:#a03d2e;
   }
   *{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI","Microsoft YaHei",sans-serif}
   body{background:var(--bg);color:var(--ink);padding:32px 20px;max-width:880px;margin:0 auto;font-size:16px;line-height:1.7}
   a{color:var(--acc);text-decoration:none;border-bottom:1px solid var(--acc)}
   header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:22px}
-  h1{font-size:26px;font-weight:700;letter-spacing:2px}
+  h1{font-family:var(--serif);font-size:30px;font-weight:700;letter-spacing:2px}
+  h1::after{content:".";color:var(--acc)}
   h1 .en{font-size:12px;letter-spacing:4px;color:var(--dim);font-weight:400;margin-left:12px;vertical-align:3px}
   .upd{font-size:14px;color:var(--dim)}
   section{margin-bottom:26px}
@@ -91,12 +93,12 @@
 </section>
 
 <section>
-  <h2>近8周完成率</h2>
+  <h2><b>01</b>近8周完成率</h2>
   <div class="card"><div class="bars" id="trend"></div></div>
 </section>
 
 <section>
-  <h2>每日验收记录（本周）</h2>
+  <h2><b>02</b>每日验收记录（本周）</h2>
   <div class="card" style="padding:8px 12px">
     <table id="dayTable">
       <thead><tr><th>日期</th><th>当日计划</th><th>学业</th><th>科研</th><th>素质</th><th>得分</th></tr></thead>
@@ -107,7 +109,7 @@
 </section>
 
 <section>
-  <h2>历史验收记录（最近60天）</h2>
+  <h2><b>03</b>历史验收记录（最近60天）</h2>
   <div class="card" style="padding:8px 12px">
     <table id="histTable">
       <thead><tr><th>日期</th><th>当日计划</th><th>学业</th><th>科研</th><th>素质</th><th>得分</th></tr></thead>
@@ -118,18 +120,18 @@
 </section>
 
 <section>
-  <h2>最近一次周复盘</h2>
+  <h2><b>04</b>最近一次周复盘</h2>
   <div class="card rev" id="review"><div class="empty">每周日23:00自动生成：完成率统计、最好与最薄弱项、下周计划</div></div>
 </section>
 
 <section>
-  <h2>学期锚点</h2>
+  <h2><b>05</b>学期锚点</h2>
   <div class="card"><ul class="anchors" id="anchors"></ul></div>
 </section>
 
 <footer>
-  <span>每晚23:00自动化写入 data.js</span>
-  <span>Future is Now · 学习面板</span>
+  <span>每晚00:30自动化写入 data.js</span>
+  <span><a href="workbench.html">Future is Now</a> · 学习面板</span>
 </footer>
 
 <script>

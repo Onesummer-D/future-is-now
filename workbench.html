@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future is Now</title>
+<script src="data.js"></script>
+<style>
+  :root{
+    --serif:Georgia,"Source Han Serif SC","Noto Serif SC",serif;
+    --bg:#f2ede1; --card:#fffefa; --line:#e5e0d5; --line2:#d5cebf;
+    --ink:#26231e; --dim:#5c5344; --faint:#8a8272;
+    --acc:#b4532a; --ok:#3a6b4f; --bad:#a03d2e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI","Microsoft YaHei",sans-serif}
+  body{background:var(--bg);color:var(--ink);padding:32px 20px;max-width:880px;margin:0 auto;line-height:1.5}
+  a{color:var(--acc);text-decoration:none;border-bottom:1px solid var(--acc)}
+  /* ---------- header ---------- */
+  header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:20px}
+  .date-serif{font-family:var(--serif);font-size:46px;line-height:1;letter-spacing:1px}
+  .date-serif::after{content:".";color:var(--acc)}
+  .brand{font-family:var(--serif);font-size:14px;letter-spacing:2px;color:var(--acc);margin-bottom:14px}
+  #bgimg{position:fixed;inset:0;background:center/cover no-repeat;opacity:.14;z-index:-1;display:none}
+  .date-sub{color:var(--dim);font-size:14px;margin-top:6px}
+  .hd-right{text-align:right}
+  .dday{font-family:Georgia,serif;font-size:30px}
+  .dday small{font-size:13px;color:var(--dim);font-family:"Segoe UI","Microsoft YaHei",sans-serif}
+  .streak{font-size:13px;color:var(--dim);margin-top:4px}
+  /* ---------- common ---------- */
+  section{margin-bottom:26px}
+  h2{font-size:13px;letter-spacing:3px;color:var(--dim);font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  h2::after{content:"";flex:1;border-top:1px solid var(--line2)}
+  h2 b{font-family:var(--serif);color:var(--acc);font-weight:600;font-size:15px;margin-right:10px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:16px 18px}
+  /* ---------- timetable ---------- */
+  .classes{display:flex;gap:8px;flex-wrap:wrap}
+  .cls{border:1px solid var(--line2);border-left:3px solid var(--acc);border-radius:3px;padding:7px 12px;font-size:13px;background:var(--card)}
+  .cls b{display:block;font-size:14px} .cls span{color:var(--dim);font-size:13px}
+  .none-today{color:var(--dim);font-size:13px}
+  /* ---------- checklist ---------- */
+  .group{margin-bottom:14px}
+  .group:last-child{margin-bottom:0}
+  .gtitle{font-size:13px;color:var(--dim);font-weight:600;margin-bottom:6px;letter-spacing:1px}
+  .item{display:flex;align-items:flex-start;gap:10px;padding:7px 4px;border-radius:3px;cursor:pointer;user-select:none}
+  .item:hover{background:#f4efe4}
+  .box{width:18px;height:18px;min-width:18px;border:2px solid var(--ink);border-radius:2px;margin-top:2px;position:relative;transition:background .12s}
+  .item.done .box{background:var(--acc);border-color:var(--acc)}
+  .item.done .box::after{content:"";position:absolute;left:4px;top:0px;width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(43deg)}
+  .item.done .txt{color:var(--faint);text-decoration:line-through}
+  .txt{font-size:15px}
+  .tag{display:inline-block;font-size:11px;color:var(--dim);border:1px solid var(--line2);border-radius:2px;padding:0 5px;margin-right:7px;vertical-align:1px}
+  .tag.精读,.tag.代码,.tag.汇报{color:var(--acc);border-color:var(--acc)}
+  .pbar{height:3px;background:var(--line);border-radius:2px;margin-top:12px;overflow:hidden}
+  .pbar i{display:block;height:100%;background:var(--ok);transition:width .25s}
+  .prate{font-size:13px;color:var(--dim);margin-top:6px;font-weight:600}
+  .addrow{display:flex;gap:8px;margin-top:10px}
+  input[type=text],textarea{background:var(--card);border:1px solid var(--line2);border-radius:3px;padding:8px 10px;font-size:13px;color:var(--ink);width:100%}
+  input[type=text]:focus,textarea:focus{outline:none;border-color:var(--acc)}
+  .addrow input{flex:1}
+  button{background:var(--ink);color:#fff;border:none;border-radius:3px;padding:8px 14px;font-size:13px;cursor:pointer}
+  button:hover{background:#000}
+  button.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+  button.ghost:hover{background:#efe9dc}
+  /* ---------- notes / tomorrow ---------- */
+  textarea{min-height:64px;resize:vertical}
+  .tom{font-size:15px;color:var(--ink);line-height:1.7}
+  .tom li{margin:5px 0 5px 18px}
+  .tom b{color:var(--ink)}
+  .tom li.carry{color:var(--acc)}
+  /* ---------- evening ---------- */
+  .evq{font-size:14px;color:var(--ink);margin-bottom:10px;line-height:1.8}
+  .evbtns{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+  .copied{color:var(--ok);font-size:13px;display:none}
+  /* ---------- reminders ---------- */
+  .setrow{display:flex;flex-direction:column;align-items:flex-start;gap:12px;font-size:14px;margin-bottom:10px}
+  .setrow label{display:flex;align-items:center;gap:6px;cursor:pointer}
+  .setrow input[type=time]{border:1px solid var(--line2);border-radius:3px;padding:3px 6px;background:var(--card)}
+  .switch{width:34px;height:18px;border-radius:10px;background:var(--line2);position:relative;cursor:pointer;transition:background .15s}
+  .switch.on{background:var(--ok)}
+  .switch i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff;transition:left .15s}
+  .switch.on i{left:18px}
+  #toast{position:fixed;right:20px;top:20px;background:var(--ink);color:#fff;padding:12px 16px;border-radius:4px;font-size:13px;max-width:300px;display:none;z-index:9;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+  footer{margin-top:30px;font-size:13px;color:var(--dim);border-top:1px solid var(--line);padding-top:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  @media(max-width:640px){header{flex-direction:column;align-items:flex-start;gap:10px}.hd-right{text-align:left}}
+</style>
+</head>
+<body>
+<div id="bgimg"></div>
+<div class="brand">◆ Future is Now</div>
+
+<header>
+  <div>
+    <div class="date-serif" id="dBig">8.29</div>
+    <div class="date-sub" id="dSub"></div>
+  </div>
+  <div class="hd-right">
+    <div class="dday"><span id="dday">—</span><small> 距 9.10 首次汇报</small></div>
+    <div class="streak" id="streakTxt"></div>
+  </div>
+</header>
+
+<section>
+  <h2><b>01</b>今日课程</h2>
+  <div id="classes" class="classes"></div>
+</section>
+
+<section>
+  <h2><b>02</b>今日清单</h2>
+  <div class="card" id="checklist"></div>
+</section>
+
+<section>
+  <h2><b>03</b>今日手记 · 收获 / 疑问 / 想问老师的</h2>
+  <textarea id="notes" placeholder="随手写。晚上的验收文本会带上这段，汇报周报也能直接用"></textarea>
+</section>
+
+<section>
+  <h2><b>04</b>明日预告</h2>
+  <div class="card"><ul class="tom" id="tomorrow"></ul></div>
+</section>
+
+<section>
+  <h2><b>05</b>晚间验收 · 00:30 发给自动化助手</h2>
+  <div class="card">
+    <div class="evq">对照上面勾选情况，回复自动化助手的三问即可：
+    <br>① 学业：作业全清了吗？错题/复习多少？
+    <br>② 科研：论文读了什么？笔记多少字？代码进度？
+    <br>③ 素质：锻炼/志愿了吗？
+    <br>或者直接复制下面生成的验收文本粘贴过去，更快。</div>
+    <div class="evbtns">
+      <button id="copyBtn">生成验收文本并复制</button>
+      <button class="ghost" id="openDash">看趋势与历史 →</button>
+      <span class="copied" id="copied">✓ 已复制，去粘贴给今晚 00:30 的验收消息即可</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><b>06</b>提醒设置</h2>
+  <div class="card">
+    <div class="setrow">
+      <label><span class="switch" id="swM"><i></i></span><input type="time" id="tM" value="08:00"> 早报：今天三件事</label>
+      <label><span class="switch" id="swR"><i></i></span><input type="time" id="tR" value="19:00"> 科研块开始</label>
+      <label><span class="switch" id="swE"><i></i></span><input type="time" id="tE" value="22:40"> 晚间核对清单</label>
+    </div>
+    <div class="setrow">
+      <button class="ghost" id="notifyBtn">开启系统通知</button>
+      <span id="notifyState" style="color:var(--dim);font-size:13px"></span>
+      <label style="font-size:13px;color:var(--dim)">自定义背景图（选填，粘贴图片链接）</label>
+      <input type="text" id="bgUrl" placeholder="https://... 图片地址，粘贴后点应用">
+      <div style="display:flex;gap:8px"><button class="ghost" id="bgApply">应用背景</button><button class="ghost" id="bgClear">清除背景</button></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>数据仓库 data.js 由每晚 00:30 自动化读写</span>
+  <span><a href="index.html">趋势面板</a> · <a href="#" id="lnkPlan">科研起步计划</a> · <a href="#" id="lnkMaster">大二规划方案</a></span>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,"0");
+const dstr=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const today=new Date(), TODAY=dstr(today);
+const DOW=["日","一","二","三","四","五","六"];
+const MON=new Date(2026,7,31); // 8.31 开学
+const semWeek=Math.max(1,Math.floor((new Date(today.getFullYear(),today.getMonth(),today.getDate())-MON)/864e5/7)+1);
+
+// ---------- localStorage helpers ----------
+const LS={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))};
+let checks=LS.get("wb_checks",{}); if(!checks[TODAY])checks[TODAY]=[];
+let extras=LS.get("wb_extras",{}); if(!extras[TODAY])extras[TODAY]=[];
+let notes=LS.get("wb_notes",{}); $("notes").value=notes[TODAY]||"";
+let settings=LS.get("wb_settings",{tM:"08:00",tR:"19:00",tE:"22:40",onM:true,onR:true,onE:true});
+$("tM").value=settings.tM;$("tR").value=settings.tR;$("tE").value=settings.tE;
+["M","R","E"].forEach(k=>$("sw"+k).classList.toggle("on",settings["on"+k]));
+
+// ---------- header ----------
+$("dBig").textContent=`${today.getMonth()+1}.${today.getDate()}`;
+$("dSub").textContent=`星期${DOW[today.getDay()]} · 教学第${semWeek}周 · ${DATA.anchors.semester}`;
+const dday=Math.ceil((new Date(2026,8,10)-today)/864e5);
+$("dday").textContent=dday>0?"D-"+dday:"已汇报 ✓";
+$("streakTxt").textContent=`连续打卡 ${DATA.streak.current} 天 · 历史最佳 ${DATA.streak.best} 天`;
+$("lnkPlan").href="index.html"; $("lnkMaster").href="index.html";
+
+// ---------- timetable ----------
+const TT={
+  1:[["8:00","软件工程导论","日新A403"],["14:00","中华民族共同体概论","博文405"],["14:50","概率论与数理统计","日新A303"],["19:00","软件编程基础综合实践","崇理223 · 1-15周"]],
+  2:[["8:00","公共体育（三）","田径场"],["14:50","大学物理（二）下","博文308"]],
+  3:[["14:00","公共英语","公外教室"]],
+  4:[["14:00","数字逻辑","日新A303"],["14:50","前端开发技术","博文313 · 1-12周"]],
+  5:[["8:00","计算机系统基础","日新A403"]],
+};
+const dow=today.getDay();
+const specials={4:[["8:00","大学物理实验（二）下","崇理201 · 3-11周轮换"]]};
+const list=(dow>=1&&dow<=5?TT[dow]||[]:[]).concat(specials[dow]&&semWeek>=3&&semWeek<=11?specials[dow]:[]);
+$("classes").innerHTML=list.length?list.map(c=>`<div class="cls"><b>${c[1]}</b><span>${c[0]} · ${c[2]}</span></div>`).join(""):'<span class="none-today">今天没有课 —— 自主安排日</span>';
+
+// ---------- today's items ----------
+function mondayOffset(off){const d=new Date(today);d.setDate(d.getDate()-((dow||7)-1)+off*7);return dstr(d);}
+const wk=DATA.weekPlans[mondayOffset(0)]||DATA.weekPlans[mondayOffset(-1)]||{};
+const wKey=["sun","mon","tue","wed","thu","fri","sat"][dow];
+const studyItems=(wk[wKey]||[]).map(t=>({t,tag:"学业"}));
+const rp=DATA.researchPlan[TODAY];
+const resItems=rp?rp.items.map(i=>({t:i.t,tag:i.tag})):[];
+const items=[...resItems,...studyItems];
+
+function render(){
+  const html=items.map((it,i)=>{
+    const done=checks[TODAY].includes(i);
+    return `<div class="group">${i===0?'<div class="gtitle">科研任务</div>':i===resItems.length?'<div class="gtitle" style="margin-top:12px">学业与生活</div>':""}
+    <div class="item ${done?"done":""}" data-i="${i}"><span class="box"></span><span class="txt"><span class="tag ${it.tag}">${it.tag}</span>${it.t}</span></div></div>`;
+  }).join("")+(extras[TODAY].length?'<div class="gtitle" style="margin-top:12px">临时加入</div>'+extras[TODAY].map((t,i)=>`<div class="item ${checks[TODAY].includes("x"+i)?"done":""}" data-i="x${i}"><span class="box"></span><span class="txt">${t}</span></div>`).join(""):"");
+  // group headers: simpler re-render below
+  $("checklist").innerHTML=renderGroups();
+  const total=items.length+extras[TODAY].length, done=checks[TODAY].length;
+  const pct=total?Math.round(done/total*100):0;
+  $("checklist").insertAdjacentHTML("beforeend",`<div class="pbar"><i style="width:${pct}%"></i></div><div class="prate">${done} / ${total} 完成（≥2/3 记当日打卡成功）</div>`);
+  bind();
+  LS.set("wb_checks",checks);
+}
+function renderGroups(){
+  let h="",lastG="";
+  const g=idx=>idx<resItems.length?"科研":(idx<items.length?"学业":"临时");
+  items.forEach((it,i)=>{const gi=g(i);if(gi!==lastG){h+=`<div class="gtitle" style="${lastG?"margin-top:12px":""}">${gi==="科研"?"科研任务":"学业与生活"}</div>`;lastG=gi;}
+    const done=checks[TODAY].includes(i);
+    h+=`<div class="item ${done?"done":""}" data-i="${i}"><span class="box"></span><span class="txt"><span class="tag ${it.tag}">${it.tag}</span>${it.t}</span></div>`;});
+  extras[TODAY].forEach((t,i)=>{const id="x"+i;const done=checks[TODAY].includes(id);
+    h+=`<div class="item ${done?"done":""}" data-i="${id}"><span class="box"></span><span class="txt">${t}</span></div>`;});
+  return h;
+}
+function bind(){
+  document.querySelectorAll(".item").forEach(el=>el.onclick=()=>{
+    const id=el.dataset.i;const arr=checks[TODAY];
+    const pos=arr.indexOf(id);pos>=0?arr.splice(pos,1):arr.push(id);
+    render();
+  });
+}
+render();
+
+// add custom item：每次渲染后挂一个添加行
+const origRender=render;
+render=function(){origRender();renderTomorrow();
+  const wrap=document.createElement("div");wrap.className="addrow";
+  wrap.innerHTML=`<input type="text" placeholder="临时加一件事，回车确认"><button>加入</button>`;
+  $("checklist").appendChild(wrap);
+  const inp=wrap.querySelector("input"),btn=wrap.querySelector("button");
+  const go=()=>{const v=inp.value.trim();if(!v)return;extras[TODAY].push(v);LS.set("wb_extras",extras);render();};
+  btn.onclick=go;inp.onkeydown=e=>{if(e.key==="Enter")go();};
+};
+
+// notes
+$("notes").oninput=e=>{notes[TODAY]=e.target.value;LS.set("wb_notes",notes);};
+
+// ---------- tomorrow（热更新：今日未勾项实时顺延进明日预告） ----------
+const tm=new Date(today);tm.setDate(tm.getDate()+1);const TMR=dstr(tm);
+const tmRp=DATA.researchPlan[TMR];
+const tmMonday=new Date(tm.getFullYear(),tm.getMonth(),tm.getDate()-((tm.getDay()||7)-1));
+const tmWk=DATA.weekPlans[dstr(tmMonday)]||{};
+const tmDowKey=["sun","mon","tue","wed","thu","fri","sat"][tm.getDay()];
+const baseTm=[...((tmRp&&tmRp.items.map(i=>i.t))||[]),...((tmWk[tmDowKey]||[]))];
+let tmList=[];
+function escT(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function renderTomorrow(){
+  tmList=[...baseTm];
+  $("tomorrow").innerHTML=tmList.length?(tmList.map(t=>`<li class="${t.startsWith("〔顺延〕")?"carry":""}">${escT(t)}</li>`).join("")+"<li><b>"+(tmRp?("科研块 "+tmRp.time):"")+"</b></li>"):"<li>暂无（今晚23:00验收后会自动生成）</li>";
+}
+renderTomorrow();
+
+// ---------- evening summary ----------
+$("copyBtn").onclick=()=>{
+  const doneSet=checks[TODAY];
+  const all=[...items.map((it,i)=>({id:i,t:it.t,g:i<resItems.length?"科研":"学业"})),...extras[TODAY].map((t,i)=>({id:"x"+i,t,g:"临时"}))];
+  const mark=x=>all.filter(a=>a.g===x).map(a=>doneSet.includes(a.id)?"✓ "+a.t:"✗ "+a.t).join("\n")||"（无）";
+  const first2=tmList.slice(0,4).map(t=>"· "+t).join("\n");
+  const txt=`【${TODAY} 验收】
+科研：
+${mark("科研")}
+学业与生活：
+${mark("学业")}${mark("临时")?"\n临时：\n"+mark("临时"):""}
+今日收获/疑问：${notes[TODAY]||"（未填）"}
+→ 明日重点：
+${first2}`;
+  (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>showCopied()).catch(()=>{
+    const ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();showCopied();});
+};
+function showCopied(){$("copied").style.display="inline";setTimeout(()=>$("copied").style.display="none",4000);}
+
+$("openDash").onclick=e=>{e.preventDefault();location.href="index.html";};
+
+// ---------- reminders ----------
+let notifyOk=false;
+$("notifyBtn").onclick=async()=>{
+  if(!("Notification" in window)){$("notifyState").textContent="此浏览器不支持系统通知";return;}
+  const p=await Notification.requestPermission();
+  notifyOk=p==="granted";
+  $("notifyState").textContent=notifyOk?"✓ 已开启（保持此页面打开即可收到）":"未授权，将只用页面内弹条提醒";
+  if(notifyOk)new Notification("工作台提醒已就绪 ✓",{body:"每天 "+settings.tM+" / "+settings.tR+" / "+settings.tE+" 会提醒你"});
+};
+["M","R","E"].forEach(k=>{
+  $("sw"+k).onclick=()=>{settings["on"+k]=!settings["on"+k];$("sw"+k).classList.toggle("on",settings["on"+k]);LS.set("wb_settings",settings);};
+  $("t"+k).onchange=e=>{settings["t"+k]=e.target.value;LS.set("wb_settings",settings);};
+});
+let fired=LS.get("wb_fired",{});
+function toast(msg){const t=$("toast");t.textContent=msg;t.style.display="block";setTimeout(()=>t.style.display="none",8000);}
+setInterval(()=>{
+  const cur=pad(new Date().getHours())+":"+pad(new Date().getMinutes());
+  [["M","早报","今天的三件事在工作台等你"],["R","科研时间","论文块开始：对照今日清单的科研部分"],["E","晚间核对","睡前勾完清单，生成验收文本"]].forEach(([k,title,body])=>{
+    const key=TODAY+"_"+settings["t"+k];
+    if(settings["on"+k]&&cur===settings["t"+k]&&!fired[key]){
+      fired[key]=1;LS.set("wb_fired",fired);
+      const pend=items.length-checks[TODAY].length;
+      const msg=`【${title}】${body}（剩 ${pend} 项未完成）`;
+      toast(msg);
+      if(notifyOk&&Notification.permission==="granted")new Notification("工作台 · "+title,{body});
+    }
+  });
+},15000);
+
+// ---------- 自定义背景图 ----------
+const bg=$("bgimg"),bgUrl=$("bgUrl");
+function applyBg(v){if(v){bg.style.backgroundImage='url("'+v+'")';bg.style.display="block";}else{bg.style.display="none";}}
+applyBg(LS.get("wb_bg",""));
+$("bgApply").onclick=()=>{const v=bgUrl.value.trim();if(!v)return;LS.set("wb_bg",v);applyBg(v);bgUrl.value="";};
+$("bgClear").onclick=()=>{LS.set("wb_bg","");applyBg("");};
+</script>
+</body>
+</html>

@@ -42,7 +42,7 @@
   .group:last-child{margin-bottom:0}
   .gtitle{font-size:13px;color:var(--dim);font-weight:600;margin-bottom:6px;letter-spacing:1px}
   .item{display:flex;align-items:flex-start;gap:10px;padding:7px 4px;border-radius:3px;cursor:pointer;user-select:none}
-  .item:hover{background:#f4efe4}
+  .item:hover{background:var(--line)}
   .box{width:18px;height:18px;min-width:18px;border:2px solid var(--ink);border-radius:2px;margin-top:2px;position:relative;transition:background .12s}
   .item.done .box{background:var(--acc);border-color:var(--acc)}
   .item.done .box::after{content:"";position:absolute;left:4px;top:0px;width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(43deg)}
@@ -59,8 +59,8 @@
   input[type=time]{width:auto;color-scheme:dark light}
   input[type=text]:focus,textarea:focus{outline:none;border-color:var(--acc)}
   .addrow input{flex:1}
-  button{background:var(--ink);color:#fff;border:none;border-radius:3px;padding:8px 14px;font-size:13px;cursor:pointer}
-  button:hover{background:#000}
+  button{background:var(--ink);color:var(--card);border:none;border-radius:3px;padding:8px 14px;font-size:14px;cursor:pointer}
+  button:hover{opacity:.82}
   button.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
   button.ghost:hover{background:#efe9dc}
   /* ---------- notes / tomorrow ---------- */
@@ -221,7 +221,9 @@ function render(){
   $("checklist").innerHTML=renderGroups();
   const total=items.length+extras[TODAY].length, done=checks[TODAY].length;
   const pct=total?Math.round(done/total*100):0;
-  $("checklist").insertAdjacentHTML("beforeend",`<div class="pbar"><i style="width:${pct}%"></i></div><div class="prate">${done} / ${total} 完成（≥2/3 记当日打卡成功）</div>`);
+  const need=total?Math.ceil(total*2/3):0;
+  const hit=done>=need?"打卡成功":"还差 "+(need-done)+" 项打卡成功";
+  $("checklist").insertAdjacentHTML("beforeend",`<div class="pbar"><i style="width:${pct}%"></i></div><div class="prate">${done} / ${total} 完成 · 达标线 ${need} 项 · ${hit}</div>`);
   bind();
   LS.set("wb_checks",checks);
 }
@@ -355,7 +357,8 @@ function themeFromImage(img){
     return {dark:true,vars:{
       bg:`hsl(${H},12%,10%)`,card:`hsl(${H},10%,15%)`,line:`hsl(${H},8%,24%)`,line2:`hsl(${H},8%,30%)`,
       ink:`hsl(${H},18%,90%)`,dim:`hsl(${H},10%,68%)`,faint:`hsl(${H},8%,52%)`,
-      acc:`hsl(${H},${SP}%,${Math.min(68,Math.round(l*100+14))}%)`}};
+      acc:`hsl(${H},${SP}%,${Math.min(68,Math.round(l*100+14))}%)`,
+      ok:`hsl(${H},32%,64%)`,warn:`hsl(${H},50%,62%)`,bad:`hsl(${H},45%,70%)`}};
   }
   return {dark:false,vars:{
     bg:`hsl(${H},${Math.min(40,Math.round(s*55))}%,93%)`,card:`hsl(${H},32%,98%)`,

@@ -13,7 +13,7 @@ const DATA = {
   streak: { current: 1, best: 1 },
   days: [
     { date: "2026-08-29", dow: "六", week: 202635, plan: ["整理两个社会实践项目的结项成果", "班委竞选PPT×2版（班长版+生活委员版）", "数媒大赛「官渡之战」继续推进", "数媒大赛：和黄想一起出点子", "大创分工：初步规划"], q: { study: "未做", mistakes: "—", bonus: "五项全部未做", virtue: "—" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: 0, note: "用户主动申报全部未做，全天未执行，已顺延" },
-    { date: "2026-08-30", dow: "日", week: 202635, plan: ["搭建conda/venv+PyTorch+Git smoke test", "速读ResNet动机与残差块", "输出M0环境卡", "基础45min: B站2.1数据操作+书2.1手敲", "〔顺延〕社会实践结项成果", "〔顺延〕班委竞选PPT×2", "〔顺延〕数媒大赛官渡之战推进", "〔顺延〕数媒大赛和黄想点子", "〔顺延〕大创分工规划", "置入课表", "研究选课(备好志愿顺序)", "新闻稿投稿"], q: { study: "课表已录/选课已研究", mistakes: "—", bonus: "环境搭建✓+torchvision smoke test✓；数媒大赛推进✓×2；ResNet速读✗、M0卡✗、d2l2.1✗", virtue: "新闻稿投稿✓（学生工作）" }, cats: { study: 1, bonus: 1, virtue: 1 }, score: 100, note: "6/12达超载日放宽线(1/2=6)，打卡成功；过生日+大扫除，进度可理解；ResNet速读未做，科研顺延选M0环境卡(最接近完成)" },
+    { date: "2026-08-30", dow: "日", week: 202635, plan: ["搭建conda/venv+PyTorch+Git smoke test", "速读ResNet动机与残差块", "输出M0环境卡", "基础45min: B站2.1数据操作+书2.1手敲", "〔顺延〕社会实践结项成果", "〔顺延〕班委竞选PPT×2", "〔顺延〕数媒大赛官渡之战推进", "〔顺延〕数媒大赛和黄想点子", "〔顺延〕大创分工规划", "置入课表", "研究选课(备好志愿顺序)", "新闻稿投稿"], q: { study: "课表已录/选课已研究", mistakes: "—", bonus: "环境搭建✓+torchvision smoke test✓；数媒大赛推进✓×2；ResNet速读✗、M0卡✗、d2l2.1✗", virtue: "未锻炼/无志愿；新闻稿投稿不计素质" }, cats: { study: 1, bonus: 1, virtue: 0 }, score: 70, note: "6/12达超载日放宽线(1/2=6)，打卡成功；得分=学业40+科研30（素质未做计0）；过生日+大扫除，ResNet速读未做，科研顺延选M0环境卡" },
   ],
   weeklyReviews: [],
   weekPlans: {

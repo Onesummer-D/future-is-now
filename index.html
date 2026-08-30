@@ -42,7 +42,7 @@
   .kbar{flex:1;height:4px;background:var(--line);border-radius:2px;margin:0 12px;overflow:hidden}
   .kbar i{display:block;height:100%}
   .bars{display:flex;align-items:flex-end;gap:20px;height:150px;padding-top:10px}
-  .bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;height:100%}
+  .bar{flex:1;max-width:72px;margin:0 auto;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;height:100%}
   .bar .v{font-family:var(--serif);font-size:16px;font-weight:700}
   .bar .col{width:100%;border-radius:3px 3px 0 0;min-height:4px}
   .bar .w{font-size:13px;letter-spacing:1px;color:var(--dim)}
@@ -101,13 +101,13 @@
 </section>
 
 <section>
-  <h2><b>02</b>每日验收记录（本周）</h2>
+  <h2><b>02</b>每日验收记录（最近7天）</h2>
   <div class="card" style="padding:8px 12px">
     <table id="dayTable">
       <thead><tr><th>日期</th><th>当日计划</th><th>学业</th><th>科研</th><th>素质</th><th>得分</th></tr></thead>
       <tbody></tbody>
     </table>
-    <div class="empty" id="dayEmpty" style="display:none">还没有记录。每晚23:00验收后会在这里出现</div>
+    <div class="empty" id="dayEmpty" style="display:none">还没有记录。每晚00:30验收后会在这里出现</div>
   </div>
 </section>
 
@@ -124,7 +124,7 @@
 
 <section>
   <h2><b>04</b>最近一次周复盘</h2>
-  <div class="card rev" id="review"><div class="empty">每周日23:00自动生成：完成率统计、最好与最薄弱项、下周计划</div></div>
+  <div class="card rev" id="review"><div class="empty">每周日00:30自动生成：完成率统计、最好与最薄弱项、下周计划</div></div>
 </section>
 
 <section>
@@ -159,7 +159,10 @@ function mondayStr(off){
 }
 function localDow(dateStr){const [y,m,dd]=dateStr.split("-").map(Number);return new Date(y,m-1,dd).getDay();}
 const days=(DATA.days||[]).slice();
-const thisWeek=days.filter(d=>d.week===weekOf(mondayStr(0))||(d.date>=mondayStr(0)&&d.date<=mondayStr(1)));
+const d0=new Date();d0.setDate(d0.getDate()-6);const p0=n=>String(n).padStart(2,"0");
+const cutStr=d0.getFullYear()+"-"+p0(d0.getMonth()+1)+"-"+p0(d.getDate()) if False else d0.getFullYear()+"-"+p0(d0.getMonth()+1)+"-"+p0(d0.getDate());
+const tStr=(d=>d.getFullYear()+"-"+p0(d.getMonth()+1)+"-"+p0(d.getDate()))(new Date());
+const thisWeek=days.filter(d=>d.date>=cutStr&&d.date<=tStr);
 
 $("upd").textContent=DATA.meta.updated||"—";
 

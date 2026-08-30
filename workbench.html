@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Future is Now</title>
+<meta http-equiv="Cache-Control" content="no-store">
 <script src="data.js"></script>
 <style>
   :root{
@@ -174,7 +175,7 @@ const semWeek=Math.max(1,Math.floor((new Date(today.getFullYear(),today.getMonth
 
 // ---------- localStorage helpers ----------
 const LS={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))};
-let checks=LS.get("wb_checks",{}); if(!checks[TODAY])checks[TODAY]=[];
+let checks=LS.get("wb_checks",{}); if(!checks[TODAY])checks[TODAY]=[]; checks[TODAY]=checks[TODAY].map(v=>String(v));
 let extras=LS.get("wb_extras",{}); if(!extras[TODAY])extras[TODAY]=[];
 let notes=LS.get("wb_notes",{}); $("notes").value=notes[TODAY]||"";
 let settings=LS.get("wb_settings",{tM:"08:00",tR:"19:00",tE:"22:40",onM:true,onR:true,onE:true});
@@ -229,7 +230,7 @@ function render(){
 }
 function renderGroups(){
   const pend=[],done=[];
-  items.forEach((it,i)=>{(checks[TODAY].includes(i)?done:pend).push({id:i,it,g:i<resItems.length?"科研任务":"学业与生活"});});
+  items.forEach((it,i)=>{(checks[TODAY].includes(String(i))?done:pend).push({id:String(i),it,g:i<resItems.length?"科研任务":"学业与生活"});});
   extras[TODAY].forEach((t,i)=>{(checks[TODAY].includes("x"+i)?done:pend).push({id:"x"+i,it:t,g:"临时加入"});});
   let h="",lastG="";
   pend.forEach(o=>{if(o.g!==lastG){h+=`<div class="gtitle" style="${lastG?"margin-top:12px":""}">${o.g}</div>`;lastG=o.g;}
@@ -281,7 +282,7 @@ renderTomorrow();
 // ---------- evening summary ----------
 $("copyBtn").onclick=()=>{
   const doneSet=checks[TODAY];
-  const all=[...items.map((it,i)=>({id:i,t:it.t,g:i<resItems.length?"科研":"学业"})),...extras[TODAY].map((t,i)=>({id:"x"+i,t,g:"临时"}))];
+  const all=[...items.map((it,i)=>({id:String(i),t:it.t,g:i<resItems.length?"科研":"学业"})),...extras[TODAY].map((t,i)=>({id:"x"+i,t,g:"临时"}))];
   const mark=x=>all.filter(a=>a.g===x).map(a=>doneSet.includes(a.id)?"✓ "+a.t:"✗ "+a.t).join("\n")||"（无）";
   const first2=tmList.slice(0,4).map(t=>"· "+t).join("\n");
   const txt=`【${TODAY} 验收】

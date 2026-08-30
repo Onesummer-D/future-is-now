@@ -190,13 +190,14 @@ if(thisWeek.length){
 }
 
 const weeks={};
-days.forEach(d=>{(weeks[d.week]=weeks[d.week]||[]).push(d.score||0);});
+days.forEach(d=>{const w=weeks[d.week]=weeks[d.week]||{arr:[],first:d.date};(weeks[d.week].arr).push(d.score||0);if(d.date<weeks[d.week].first)weeks[d.week].first=d.date;});
 const keys=Object.keys(weeks).sort().slice(-8);
 if(keys.length){
   $("trend").innerHTML=keys.map(w=>{
-    const arr=weeks[w]; const r=Math.round(arr.reduce((a,b)=>a+b,0)/arr.length);
+    const o=weeks[w]; const r=Math.round(o.arr.reduce((a,b)=>a+b,0)/o.arr.length);
     const c=r>=80?"#3a6b4f":r>=60?"#a06a2e":"#a03d2e";
-    return `<div class="bar"><div class="v" style="color:${c}">${r}</div><div class="col" style="height:${Math.max(4,r*0.85)}%;background:${c}"></div><div class="w">W${String(w).slice(4)}</div></div>`;
+    const lab=o.first.slice(5).replace("-",".");
+    return `<div class="bar"><div class="v" style="color:${c}">${r}</div><div class="col" style="height:${Math.max(4,r*0.85)}%;background:${c}"></div><div class="w">${lab}周</div></div>`;
   }).join("");
 }else{
   $("trend").innerHTML='<div class="empty" style="width:100%">打卡后这里会出现每周趋势</div>';

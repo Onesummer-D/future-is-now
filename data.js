@@ -2,7 +2,7 @@
 // days[]: {date,dow,week,plan:[],q:{study,mistakes,bonus,virtue},cats:{study,bonus,virtue},score,note}
 // researchPlan: 日期 → {time, items:[{t,tag}], focus}  tag ∈ 精读/泛读/代码/输出/汇报/其他
 const DATA = {
-  meta: { name: "", version: 4, updated: "2026-08-30", workbench: "工作台.html", dashboard: "dashboard.html" },
+  meta: { name: "", version: 4, updated: "2026-08-31", workbench: "工作台.html", dashboard: "dashboard.html" },
   anchors: {
     semester: "2026-2027 大二上（8.31开始上课）",
     gpaTarget: "期末加权≥91 → 累计绩点≥3.71（大二末3.80）",
@@ -10,9 +10,10 @@ const DATA = {
     semesterGoals: ["蓝桥杯报名(10月下旬)+每日刷题", "12月CET-6首考500+", "科研: 9.10首汇报(8页8-10分钟), 之后每周1深读+2扫描+双周简报, 证据卡10分制"],
   },
   report: { title: "CV方向初识 · 第一次组内汇报", date: "2026-09-10" },
-  streak: { current: 0, best: 0 },
+  streak: { current: 1, best: 1 },
   days: [
     { date: "2026-08-29", dow: "六", week: 202635, plan: ["整理两个社会实践项目的结项成果", "班委竞选PPT×2版（班长版+生活委员版）", "数媒大赛「官渡之战」继续推进", "数媒大赛：和黄想一起出点子", "大创分工：初步规划"], q: { study: "未做", mistakes: "—", bonus: "五项全部未做", virtue: "—" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: 0, note: "用户主动申报全部未做，全天未执行，已顺延" },
+    { date: "2026-08-30", dow: "日", week: 202635, plan: ["搭建conda/venv+PyTorch+Git smoke test", "速读ResNet动机与残差块", "输出M0环境卡", "基础45min: B站2.1数据操作+书2.1手敲", "〔顺延〕社会实践结项成果", "〔顺延〕班委竞选PPT×2", "〔顺延〕数媒大赛官渡之战推进", "〔顺延〕数媒大赛和黄想点子", "〔顺延〕大创分工规划", "置入课表", "研究选课(备好志愿顺序)", "新闻稿投稿"], q: { study: "课表已录/选课已研究", mistakes: "—", bonus: "环境搭建✓+torchvision smoke test✓；数媒大赛推进✓×2；ResNet速读✗、M0卡✗、d2l2.1✗", virtue: "新闻稿投稿✓（学生工作）" }, cats: { study: 1, bonus: 1, virtue: 1 }, score: 100, note: "6/12达超载日放宽线(1/2=6)，打卡成功；过生日+大扫除，进度可理解；ResNet速读未做，科研顺延选M0环境卡(最接近完成)" },
   ],
   weeklyReviews: [],
   weekPlans: {
@@ -22,7 +23,7 @@ const DATA = {
     },
     "2026-08-31": {
       mon: ["报到注册+领教材，加各课程群", "班长竞选：交材料/演讲", "（晚软编实践课到21:25，课后休息）"],
-      tue: ["LeetCode 3题", "背六级单词30min，确认CET-6报名时间", "概率论跟课+当天作业"],
+      tue: ["LeetCode 3题", "背六级单词30min，确认CET-6报名时间", "概率论跟课+当天作业", "〔顺延〕整理两个社会实践项目的结项成果", "〔顺延〕班委竞选PPT×2版（班长版+生活委员版）", "〔顺延〕大创分工：初步规划"],
       wed: ["LeetCode 3题", "上午空档：整理本周论文笔记+准备周报素材", "锻炼30min"],
       thu: ["LeetCode 3题", "概率论作业+数理错题", "数字逻辑/前端课后整理"],
       fri: ["LeetCode 3题（周累计≥12）", "本周课程作业全清", "下午空档：科研代码里程碑收尾"],
@@ -50,9 +51,11 @@ const DATA = {
       { t: "搭 CIFAR-10 小CNN vs ResNet18 共同训练框架", tag: "代码" },
       { t: "输出一页实验协议：数据划分/seed/epoch/指标/唯一变量", tag: "输出" },
       { t: "基础45min：d2l 数据操作练习 + 与 NumPy 对照；手推图片张量 N×C×H×W", tag: "基础" },
+      { t: "〔基础补〕ResNet 速读动机与残差块 + d2l 2.1 补看（视频1.25x，与今日基础块合并完成即可）", tag: "基础" },
       { t: "软工导论/共同体/概率论第一课，记录各课考核方式", tag: "其他" },
       { t: "8:30 在 youthpartner.voc.com.cn/pc/topic/detail/1043 投稿（时间硬！提前写好）", tag: "其他" },
       { t: "10:00 抢课（时间硬！提前登好选课系统、备好志愿顺序）", tag: "其他" },
+      { t: "〔顺延〕输出 M0 环境卡：版本/设备/最小前向结果/仓库首个commit（环境昨天已装好，只差截图+commit）", tag: "输出" },
       { t: "（晚软编实践课）", tag: "其他" },
     ]},
     "2026-09-01": { time: "19:00-22:00", focus: "实验日 M1", items: [

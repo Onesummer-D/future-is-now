@@ -53,6 +53,7 @@
   .tag.精读,.tag.代码,.tag.汇报{color:var(--acc);border-color:var(--acc)}
   .tag.基础{color:var(--ok);border-color:var(--ok)}
   .tag.每日{color:var(--acc);border-color:var(--acc)}
+  .tag.前端{color:var(--acc);border-color:var(--acc)}
   .pbar{height:3px;background:var(--line);border-radius:2px;margin-top:12px;overflow:hidden}
   .pbar i{display:block;height:100%;background:var(--ok);transition:width .25s}
   .prate{font-size:14px;color:var(--dim);margin-top:6px;font-weight:600}
@@ -209,7 +210,7 @@ function mondayOffset(off){const d=new Date(today);d.setDate(d.getDate()-((dow||
 const wk=DATA.weekPlans[mondayOffset(0)]||DATA.weekPlans[mondayOffset(-1)]||{};
 const wKey=["sun","mon","tue","wed","thu","fri","sat"][dow];
 const recItems=(DATA.dailyRecurring||[]).map(t=>({t,tag:"每日"}));
-const studyItems=[...recItems,...(wk[wKey]||[]).map(t=>({t,tag:"学业"}))];
+const studyItems=[...recItems,...(wk[wKey]||[]).map(t=>({t,tag:t.startsWith("【前端")?"前端":"学业"}))];
 const rp=DATA.researchPlan[TODAY];
 const resItems=rp?rp.items.map(i=>({t:i.t,tag:i.tag})):[];
 const items=[...resItems,...studyItems];

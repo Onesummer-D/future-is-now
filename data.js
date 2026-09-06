@@ -22,7 +22,7 @@ const DATA = {
     { date: "2026-09-03", dow: "四", week: 202636, plan: ["紧急DDL收尾（科研暂停）", "〔顺延〕上午搭完PPT框架", "〔顺延〕志愿委员PPT制作", "〔顺延〕平台UI优化设计，技术手册阅读", "〔顺延〕软工实践", "〔顺延〕背六级单词", "〔顺延〕大创分工", "LeetCode 3题", "概率论作业+数理错题", "数字逻辑/前端课后整理", "锻炼30min"], done: [1,1,0,1,0,0,0,0,1,0,0], diary: "DDL赶完了；上午搭完PPT框架、平台UI优化设计、技术手册阅读、概率论作业都做完了", q: { study: "DDL收尾✓/PPT框架✓/平台UI+技术手册✓/概率论作业✓", mistakes: "—", bonus: "科研暂停日（无科研任务）", virtue: "未锻炼" }, cats: { study: 1, bonus: 0, virtue: 0 }, score: 40, note: "补验收（9.4晚）：4/11完成，含当日主任务DDL收尾+3件学业；未达打卡线(放宽1/2=6)，streak维持0；得分=学业40（科研暂停日不计、素质未做）" },
   ],
   weeklyReviews: [],
-  dailyRecurring: ["送书到宿舍楼下"],
+  dailyRecurring: [],
   weekPlans: {
     "2026-08-24": {
       sat: ["整理两个社会实践项目的结项成果", "班委竞选PPT×2版（班长版+生活委员版）", "数媒大赛「官渡之战」继续推进", "数媒大赛：和黄想一起出点子", "大创分工：初步规划"],
@@ -38,12 +38,12 @@ const DATA = {
       sun: ["志愿支援 12:00-16:00", "预习周一课程+错题本（机动）", "晚：00:30验收周复盘，确认下周计划"],
     },
     "2026-09-07": { preseed: true,
-      mon: ["【前端Day1】Web三件套概念+HTML基础：独立写个人介绍页（MDN Your first website+B站入门课，1.5-2h；建frontend-learning/day01仓库）", "给导师发消息：说明志愿+DDL+前端课业占用，申请首汇报改期至9.17左右", "当天课业作业", "背六级单词30min", "锻炼30min"],
-      tue: ["【前端Day2】HTML结构+语义标签：完整文章页（标题/段落/图片/链接/列表/表格/表单）+freeCodeCamp 20-30题", "当天课业作业", "背六级单词30min", "锻炼30min"],
-      wed: ["【前端Day3】CSS选择器+盒模型：给Day1/2页面装修（字体/颜色/边框/间距/按钮）", "当天课业作业", "背六级单词30min", "锻炼30min"],
-      thu: ["【前端Day4】Flexbox：导航栏+卡片列表+两栏布局", "当天课业作业", "背六级单词30min", "锻炼30min"],
-      fri: ["【前端Day5】JS基础：let/const/数组/对象/if/for/function，写3个小程序（重点记与C++/Python的差异）", "本周课业作业全清", "锻炼30min"],
-      sat: ["【前端Day6】DOM+事件：querySelector/addEventListener，点击改文字/读输入框/显示隐藏", "机动：课业或休息", "锻炼30min"],
+      mon: ["【前端Day1】Web三件套概念+HTML基础：独立写个人介绍页（MDN Your first website+B站入门课，1.5-2h；建frontend-learning/day01仓库）", "当天课业作业", "背六级单词30min"],
+      tue: ["【前端Day2】HTML结构+语义标签：完整文章页（标题/段落/图片/链接/列表/表格/表单）+freeCodeCamp 20-30题", "当天课业作业", "背六级单词30min"],
+      wed: ["【前端Day3】CSS选择器+盒模型：给Day1/2页面装修（字体/颜色/边框/间距/按钮）", "当天课业作业", "背六级单词30min"],
+      thu: ["【前端Day4】Flexbox：导航栏+卡片列表+两栏布局", "当天课业作业", "背六级单词30min"],
+      fri: ["【前端Day5】JS基础：let/const/数组/对象/if/for/function，写3个小程序（重点记与C++/Python的差异）", "本周课业作业全清"],
+      sat: ["【前端Day6】DOM+事件：querySelector/addEventListener，点击改文字/读输入框/显示隐藏", "机动：课业或休息"],
       sun: ["【前端Day7】综合项目：不看教程从零做「AI分析等待页」（进度条+步骤切换+按钮），Git提交", "机动：志愿或休息", "晚：00:30验收周复盘"],
     },
   },
@@ -93,16 +93,55 @@ const DATA = {
     ]},
     "2026-09-05": { time: "志愿 8:00-20:00", focus: "志愿日（科研暂停）", items: []},
     "2026-09-06": { time: "志愿支援 12:00-16:00", focus: "轻量日（科研暂停）", items: []},
-    "2026-09-07": { time: "科研让位前端周", focus: "汇报改期沟通", items: [
-      { t: "给导师发消息申请首汇报改期（志愿+DDL+前端课业；建议9.17），问清组里认可的新时间", tag: "汇报" },
+    "2026-09-07": { time: "标准3h", focus: "Day1 M0环境卡日", items: [
+      { t: "搭 conda/venv + PyTorch + Git，跑通 torchvision smoke test（环境8.30已装好，直接验证+补截图）", tag: "代码" },
+      { t: "速读 ResNet (CVPR16) 动机与残差块，能画出残差连接", tag: "泛读" },
+      { t: "输出 M0 环境卡：版本/设备/最小前向结果/仓库首个commit", tag: "输出" },
     ]},
-    "2026-09-08": { time: "—", focus: "前端Week1（科研暂停）", items: []},
-    "2026-09-09": { time: "—", focus: "前端Week1（科研暂停）", items: []},
-    "2026-09-10": { time: "原汇报日", focus: "备选：轻量汇报", items: [
-      { t: "（仅当老师坚持9.10）轻量汇报8页：方向矩阵+PPT框架+四周学习计划（无实验），提前彩排30分钟", tag: "汇报" },
+    "2026-09-08": { time: "标准3h", focus: "Day2 ViT机制+实验协议", items: [
+      { t: "机制读 ViT (ICLR 2021)：patch/token/attention 输入输出，读模型图与公式1", tag: "精读" },
+      { t: "搭 CIFAR-10 小CNN vs ResNet18 共同训练框架", tag: "代码" },
+      { t: "输出一页实验协议：数据划分/seed/epoch/指标/唯一变量", tag: "输出" },
     ]},
-    "2026-09-11": { time: "—", focus: "前端Week1", items: []},
-    "2026-09-12": { time: "—", focus: "前端Week1", items: []},
-    "2026-09-13": { time: "—", focus: "前端Week1收尾", items: []},
+    "2026-09-09": { time: "标准3h", focus: "Day3 实验日M1", items: [
+      { t: "完成 M1 分类对照：小CNN vs ResNet18，固定seed，曲线+混淆矩阵+3个错误样本", tag: "代码" },
+      { t: "输出实验卡 M1（同条件可重跑/结果表/错误案例，不追高精度）", tag: "输出" },
+    ]},
+    "2026-09-10": { time: "标准3h", focus: "Day4 深读导师主线", items: [
+      { t: "深读 Dynamic Interaction Dilation (TMM 2024)：交互点击如何影响人体解析", tag: "精读" },
+      { t: "输出论文证据卡 P1（10分制≥7分：输入/交互循环/DD-Module/AIE-Block/指标）", tag: "输出" },
+    ]},
+    "2026-09-11": { time: "标准3h", focus: "Day5 视频理解机制", items: [
+      { t: "深读 VideoMAE V2（难则 VideoMAE）：时序采样/tube masking/预训练微调", tag: "精读" },
+      { t: "准备视频推理环境；输出视频模型机制图（clip采样→logits张量流）+3个算力风险", tag: "输出" },
+    ]},
+    "2026-09-12": { time: "周六长块3-4h", focus: "Day6 实验日M2", items: [
+      { t: "完成 M2：预训练 R3D-18/SlowFast 推理3-5个短视频；改采样间隔或clip长度", tag: "代码" },
+      { t: "输出实验卡 M2（top-k/两组采样/失败案例；明确是推理实验）", tag: "输出" },
+    ]},
+    "2026-09-13": { time: "周日下午3h", focus: "Day7 深读ContextBLIP", items: [
+      { t: "深读 ContextBLIP (ACL Findings 2024)：intra/inter-context alignment", tag: "精读" },
+      { t: "浏览官方仓库估算复现成本（不重训练）；输出论文证据卡 P2", tag: "输出" },
+    ]},
+    "2026-09-14": { time: "标准3h", focus: "Day8 CLIP+M3", items: [
+      { t: "机制读 CLIP + 深读 CAPT 或 Spotlighter", tag: "精读" },
+      { t: "20张小样本 prompt 敏感性实验；输出实验卡 M3（≥3套prompt/混淆对/零样本预测表）", tag: "代码" },
+    ]},
+    "2026-09-15": { time: "标准3h", focus: "Day9 方向矩阵", items: [
+      { t: "结构化扫描 SinColor (TIP 2026) 与最新交互分割论文", tag: "泛读" },
+      { t: "整理高老师四条公开研究线，选汇报重点一篇；输出方向矩阵 v1", tag: "输出" },
+    ]},
+    "2026-09-16": { time: "19:00-22:00", focus: "Day10 汇报材料", items: [
+      { t: "做8页PPT（结论式标题）；整理仓库README；M1/M2/M3只保留最可信两项", tag: "汇报" },
+      { t: "输出 PPT v1 + demo录屏备份", tag: "输出" },
+    ]},
+    "2026-09-17": { time: "傍晚+晚", focus: "Day11 彩排", items: [
+      { t: "两次计时彩排（≤10分钟）；「老师追问清单」自测；向老师确认明天时间", tag: "汇报" },
+      { t: "输出 PPT v2 + 问答卡；准备3个请教问题", tag: "输出" },
+    ]},
+    "2026-09-18": { time: "汇报日", focus: "Day12 首次汇报", items: [
+      { t: "完成首次汇报（8页、8-10分钟）；现场记录老师的方向/任务/代码/算力/汇报节奏建议", tag: "汇报" },
+      { t: "会后2小时内把反馈转成 继续/停止/待确认 三栏", tag: "其他" },
+    ]},
   },
 };

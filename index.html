@@ -234,6 +234,7 @@ if(rv){
   <div class="line">最薄弱：<span style="color:var(--bad)">${esc(rv.weak)}</span></div>
   <div class="line" style="margin-top:10px;font-weight:600">下周目标</div>
   <ul class="goal">${(rv.nextGoals||[]).map(g=>`<li>${esc(g)}</li>`).join("")}</ul>`;
+  ${rv.raw?`<details style="margin-top:14px"><summary style="cursor:pointer;color:var(--acc);font-size:14px">展开我的原始周复盘</summary><div style="white-space:pre-wrap;font-size:14px;color:var(--dim);margin-top:10px;line-height:1.9">${esc(rv.raw)}</div></details>`:""}
 }
 
 $("anchors").innerHTML=[

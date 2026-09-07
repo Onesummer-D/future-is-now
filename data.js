@@ -2,7 +2,7 @@
 // days[]: {date,dow,week,plan:[],q:{study,mistakes,bonus,virtue},cats:{study,bonus,virtue},score,note}
 // researchPlan: 日期 → {time, items:[{t,tag}], focus}  tag ∈ 精读/泛读/代码/输出/汇报/其他
 const DATA = {
-  meta: { name: "", version: 4, updated: "2026-09-04", workbench: "工作台.html", dashboard: "dashboard.html" },
+  meta: { name: "", version: 4, updated: "2026-09-09", workbench: "工作台.html", dashboard: "dashboard.html" },
   anchors: {
     semester: "2026-2027 大二上（8.31开始上课）",
     gpaTarget: "期末加权≥91 → 累计绩点≥3.71（大二末3.80）",
@@ -20,6 +20,11 @@ const DATA = {
     { date: "2026-09-01", dow: "二", week: 202636, plan: ["机制读ViT(顺延)", "M1分类对照", "实验卡M1", "基础45min: Exercism 3题", "〔基础补〕d2l+NumPy/ResNet/2.1", "LeetCode 3题(竞赛)", "青春合伙人投稿", "找郑老师要邮箱和所在部门", "上午搭完PPT框架", "志愿委员PPT制作", "平台UI优化设计，技术手册阅读", "软工实践: 代码读懂、理清第一版实验报告", "继续推进数媒、社会实践结项整理", "优化文博的文字报告、一院一品材料包文书", "思考题: 文博系统接入方言语言", "背六级单词30min", "〔顺延〕大创分工: 初步规划"], done: [0,0,0,0,0,0,1,1,0,0,0,0,1,1,1,0,0], q: { study: "投稿/郑老师邮箱/数媒结项/文博文书/方言思考题 共5项完成", mistakes: "—", bonus: "科研6项全部未做（含顺延的ViT）", virtue: "未锻炼" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: 0, note: "5/17未达打卡线(2/3=12,放宽1/2=9)，打卡失败streak归0；紧急DDL两天，科研明日暂停；学业类完成5/11" },
     { date: "2026-09-02", dow: "三", week: 202636, plan: ["紧急DDL冲刺（科研暂停）", "〔顺延〕上午搭完PPT框架", "〔顺延〕志愿委员PPT制作", "〔顺延〕平台UI优化设计，技术手册阅读", "〔顺延〕软工实践", "〔顺延〕背六级单词", "〔顺延〕大创分工", "LeetCode 3题", "锻炼30min"], done: [], q: { study: "未验收", mistakes: "—", bonus: "科研暂停日", virtue: "—" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: null, note: "用户忘记验收（DDL日）。不计分不惩罚；有完成情况可随时补录done" },
     { date: "2026-09-03", dow: "四", week: 202636, plan: ["紧急DDL收尾（科研暂停）", "〔顺延〕上午搭完PPT框架", "〔顺延〕志愿委员PPT制作", "〔顺延〕平台UI优化设计，技术手册阅读", "〔顺延〕软工实践", "〔顺延〕背六级单词", "〔顺延〕大创分工", "LeetCode 3题", "概率论作业+数理错题", "数字逻辑/前端课后整理", "锻炼30min"], done: [1,1,0,1,0,0,0,0,1,0,0], diary: "DDL赶完了；上午搭完PPT框架、平台UI优化设计、技术手册阅读、概率论作业都做完了", q: { study: "DDL收尾✓/PPT框架✓/平台UI+技术手册✓/概率论作业✓", mistakes: "—", bonus: "科研暂停日（无科研任务）", virtue: "未锻炼" }, cats: { study: 1, bonus: 0, virtue: 0 }, score: 40, note: "补验收（9.4晚）：4/11完成，含当日主任务DDL收尾+3件学业；未达打卡线(放宽1/2=6)，streak维持0；得分=学业40（科研暂停日不计、素质未做）" },
+    { date: "2026-09-04", dow: "五", week: 202636, plan: ["社会实践ddl：结项材料提交", "〔顺延〕PPT框架/平台UI/软工实践/六级/大创分工等学业项", "课业作业"], done: [], q: { study: "未验收（用户当日未报）", mistakes: "—", bonus: "科研让位日", virtue: "—" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: null, note: "社会实践ddl日；周末周总结确认社会实践结项当周已完成" },
+    { date: "2026-09-05", dow: "六", week: 202636, plan: ["志愿 8:00-20:00", "班长/志愿委员PPT制作（间隙）", "〔顺延〕大创分工"], done: [], q: { study: "未验收（志愿日）", mistakes: "—", bonus: "科研暂停", virtue: "志愿8h" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: null, note: "志愿日，未验收" },
+    { date: "2026-09-06", dow: "日", week: 202636, plan: ["志愿支援 12:00-16:00", "预习周一课程（机动）"], done: [], q: { study: "未验收（志愿日）", mistakes: "—", bonus: "科研暂停；当晚写周总结", virtue: "志愿4h" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: null, note: "志愿支援日，未验收；周总结原文已存档" },
+    { date: "2026-09-07", dow: "一", week: 202637, plan: ["《软件工程导论》论文作业", "软件编程实践_实验报告", "上周作业补完(24:00)", "【前端Day1】个人介绍页", "科研Day1 M0环境卡", "课业作业", "六级单词"], done: [], q: { study: "未验收（凌晨写周总结，晚睡）", mistakes: "—", bonus: "科研Day1 M0状态未知", virtue: "—" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: null, note: "开学第一周作业日，未验收；前端Day1与M0环境卡完成情况待用户补充" },
+    { date: "2026-09-08", dow: "二", week: 202637, plan: ["机制读ViT", "搭CIFAR-10框架", "输出实验协议", "【前端Day2】语义标签文章页+freeCodeCamp", "班长/志愿委员PPT推进+一分钟演讲稿", "整理每门专业课自学资源清单", "当天课业作业", "背六级单词30min"], done: [0,0,0,0,0,1,1,0], diary: "啊啊啊今天满课咋这么多课！！！气死我了课上的作业练习就一大堆，明天一定要早起。。。。", q: { study: "满课日：课业作业✓+专业课自学资源清单✓", mistakes: "—", bonus: "科研Day2全灭（ViT/框架/协议）", virtue: "未锻炼" }, cats: { study: 1, bonus: 0, virtue: 0 }, score: 40, note: "2/8未达打卡线(需6)，打卡失败；满课日学业保40；科研连续落后，明日聚焦M1" },
   ],
   weeklyReviews: [
     { week: 202636, date: "2026-09-07", rate: 27, good: "社会实践结项提交、国创赛申报、志愿参加——三件大事全部落地；9.3当天DDL+PPT框架+平台UI+概率论作业也完成了", weak: "计划远超完成：没预估好社会实践和国创赛的耗时，科研冲刺Day1-7全部顺延，作业拖到周日夜还在赶；早起连续失败，熬夜太多（两大DDL是主因）", nextGoals: ["科研必须推进：冲刺Day1-12，汇报9.18，最晚线国庆前", "班长/志愿委员PPT + 一分钟演讲稿（还没做好）", "决定历史/软工实践要不要当组长", "优化Future is Now：修bug、随课表变化、周一少布置留机动", "大创赶紧分工安排任务", "整理每门专业课的自学资源清单（课少但要自己补的多）", "早起：本周6天里至少3天7:30起床", "教训：DDL堆积时第一件事=调整系统任务安排，每天聚焦重点"],
@@ -43,7 +48,7 @@ const DATA = {
     "2026-09-07": { preseed: true,
       mon: ["《软件工程导论》论文作业", "软件编程实践_实验报告", "上周作业补完（24:00前，今天最硬线）", "【前端Day1】Web三件套概念+HTML基础：独立写个人介绍页（MDN Your first website+B站入门课，1.5-2h；建frontend-learning/day01仓库）", "科研Day1：M0环境卡（环境已装好，补截图+commit）", "当天课业作业", "背六级单词30min"],
       tue: ["【前端Day2】HTML结构+语义标签：完整文章页（标题/段落/图片/链接/列表/表格/表单）+freeCodeCamp 20-30题", "班长/志愿委员PPT推进+一分钟演讲稿", "整理每门专业课的自学资源与拓展清单", "当天课业作业", "背六级单词30min"],
-      wed: ["【前端Day3】CSS选择器+盒模型：给Day1/2页面装修（字体/颜色/边框/间距/按钮）", "决定历史/软工实践要不要当组长", "大创分工：安排任务（顺延多日，今天必须落地）", "当天课业作业", "背六级单词30min"],
+      wed: ["〔顺延〕【前端Day2】HTML语义标签：完整文章页+freeCodeCamp 20-30题（与Day3二选一即可）", "〔顺延〕班长/志愿委员PPT推进+一分钟演讲稿", "【前端Day3】CSS选择器+盒模型：给Day1/2页面装修（字体/颜色/边框/间距/按钮）", "决定历史/软工实践要不要当组长", "大创分工：安排任务（顺延多日，今天必须落地）", "当天课业作业", "背六级单词30min"],
       thu: ["【前端Day4】Flexbox：导航栏+卡片列表+两栏布局", "优化Future is Now：修bug+机动时间机制（随课表变化、周一轻量）", "当天课业作业", "背六级单词30min"],
       fri: ["【前端Day5】JS基础：let/const/数组/对象/if/for/function，写3个小程序（重点记与C++/Python的差异）", "社会实践成果若已出：向老师汇报（机动）", "本周课业作业全清"],
       sat: ["【前端Day6】DOM+事件：querySelector/addEventListener，点击改文字/读输入框/显示隐藏", "机动：课业或休息"],
@@ -106,7 +111,8 @@ const DATA = {
       { t: "搭 CIFAR-10 小CNN vs ResNet18 共同训练框架", tag: "代码" },
       { t: "输出一页实验协议：数据划分/seed/epoch/指标/唯一变量", tag: "输出" },
     ]},
-    "2026-09-09": { time: "标准3h", focus: "Day3 实验日M1", items: [
+    "2026-09-09": { time: "标准3h", focus: "Day3 实验日M1（今日唯一科研重点）", items: [
+      { t: "〔顺延〕机制读 ViT (ICLR 2021)：patch/token/attention 输入输出，读模型图与公式1", tag: "精读" },
       { t: "完成 M1 分类对照：小CNN vs ResNet18，固定seed，曲线+混淆矩阵+3个错误样本", tag: "代码" },
       { t: "输出实验卡 M1（同条件可重跑/结果表/错误案例，不追高精度）", tag: "输出" },
     ]},

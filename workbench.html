@@ -24,8 +24,6 @@
   #bgimg{position:fixed;inset:0;background:center/cover no-repeat;opacity:.3;z-index:-1;display:none}
   .date-sub{color:var(--dim);font-size:14px;margin-top:6px}
   .hd-right{text-align:right}
-  .dday{font-family:Georgia,serif;font-size:30px}
-  .dday small{font-size:13px;color:var(--dim);font-family:"Segoe UI","Microsoft YaHei",sans-serif}
   .streak{font-size:13px;color:var(--dim);margin-top:4px}
   /* ---------- common ---------- */
   section{margin-bottom:26px}
@@ -100,7 +98,6 @@
     <div class="date-sub" id="dSub"></div>
   </div>
   <div class="hd-right">
-    <div class="dday"><span id="dday">—</span><small> 距 9.10 首次汇报</small></div>
     <div class="streak" id="streakTxt"></div>
   </div>
 </header>
@@ -187,8 +184,6 @@ $("tM").value=settings.tM;$("tR").value=settings.tR;$("tE").value=settings.tE;
 // ---------- header ----------
 $("dBig").textContent=`${today.getMonth()+1}.${today.getDate()}`;
 $("dSub").textContent=`星期${DOW[today.getDay()]} · 教学第${semWeek}周`;
-const dday=Math.ceil((new Date(2026,8,10)-today)/864e5);
-$("dday").textContent=dday>0?"D-"+dday:"已汇报 ✓";
 $("streakTxt").textContent=`连续打卡 ${DATA.streak.current} 天 · 历史最佳 ${DATA.streak.best} 天`;
 $("lnkPlan").href="index.html"; $("lnkMaster").href="index.html";
 

@@ -2,7 +2,7 @@
 // days[]: {date,dow,week,plan:[],q:{study,mistakes,bonus,virtue},cats:{study,bonus,virtue},score,note}
 // researchPlan: 日期 → {time, items:[{t,tag}], focus}  tag ∈ 精读/泛读/代码/输出/汇报/其他
 const DATA = {
-  meta: { name: "", version: 7, updated: "2026-09-16(补录9.14/9.15，streak4创新高)", workbench: "工作台.html", dashboard: "dashboard.html" },
+  meta: { name: "", version: 9, updated: "2026-09-18(任务单重排，科研Day1-3重启，旧汇报线撤)", workbench: "工作台.html", dashboard: "dashboard.html" },
   anchors: {
     semester: "2026-2027 大二上（8.31开始上课）",
     gpaTarget: "期末加权≥91 → 累计绩点≥3.71（大二末3.80）",
@@ -10,7 +10,7 @@ const DATA = {
     semesterGoals: ["蓝桥杯报名(10月下旬)+每日刷题", "12月CET-6首考500+", "科研: 9.10首汇报(8页8-10分钟), 之后每周1深读+2扫描+双周简报, 证据卡10分制"],
   },
   report: { title: "CV方向初识 · 第一次组内汇报", date: "2026-09-10" },
-  streak: { current: 4, best: 4 },
+  streak: { current: 5, best: 5 },
   days: [
     { date: "2026-08-29", dow: "六", week: 202635, plan: ["整理两个社会实践项目的结项成果", "班委竞选PPT×2版（班长版+生活委员版）", "数媒大赛「官渡之战」继续推进", "数媒大赛：和黄想一起出点子", "大创分工：初步规划"], q: { study: "未做", mistakes: "—", bonus: "五项全部未做", virtue: "—" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: 0, note: "用户主动申报全部未做，全天未执行，已顺延" },
     { date: "2026-08-30", dow: "日", week: 202635, plan: ["搭建conda/venv+PyTorch+Git smoke test", "速读ResNet动机与残差块", "输出M0环境卡", "基础45min: B站2.1数据操作+书2.1手敲", "〔顺延〕社会实践结项成果", "〔顺延〕班委竞选PPT×2", "〔顺延〕数媒大赛官渡之战推进", "〔顺延〕数媒大赛和黄想点子", "〔顺延〕大创分工规划", "置入课表", "研究选课(备好志愿顺序)", "新闻稿投稿"], q: { study: "课表已录/选课已研究", mistakes: "—", bonus: "环境搭建✓+torchvision smoke test✓；数媒大赛推进✓×2；ResNet速读✗、M0卡✗、d2l2.1✗", virtue: "未锻炼/无志愿；新闻稿投稿不计素质" },
@@ -32,6 +32,7 @@ const DATA = {
     { date: "2026-09-13", dow: "日", week: 202637, plan: ["【前端Day1】个人介绍页", "课业作业完成", "机动：志愿或休息"], done: [1,1,1], q: { study: "前端Day1✓；课业作业完成✓（概率论作业收尾中）", mistakes: "—", bonus: "志愿✓", virtue: "—" }, cats: { study: 1, bonus: 0, virtue: 0 }, score: 40, note: "3/3全清达打卡线，打卡成功streak归2；9.14补录" },
     { date: "2026-09-14", dow: "一", week: 202638, plan: ["概率论笔记梳理", "概率论作业完成一部分", "软件工程导论笔记梳理", "爬虫报告查看", "确认明天上午10:00六级报名", "刷网课"], done: [1,1,1,0,1,1], q: { study: "概率论笔记✓；概率论作业✓；软工导论笔记✓；六级报名确认✓；刷网课✓", mistakes: "—", bonus: "课业周，科研暂停", virtue: "—" }, cats: { study: 1, bonus: 0, virtue: 0 }, score: 40, note: "5/6达打卡线(需4)，打卡成功streak归3；爬虫报告查看未做顺延；9.16补录" },
     { date: "2026-09-15", dow: "二", week: 202638, plan: ["上午10:00六级报名（硬时间）", "刷网课"], done: [1,1], q: { study: "六级报名✓（上午10:00硬时间赶上）；刷网课✓", mistakes: "—", bonus: "科研Day9未做，旧冲刺计划过时下线", virtue: "—" }, cats: { study: 1, bonus: 0, virtue: 0 }, score: 40, note: "2/2全清达打卡线，打卡成功streak归4（破历史最佳2）；9.16补录" },
+    { date: "2026-09-16", dow: "三", week: 202638, plan: ["做8页PPT（结论式标题）+整理README", "输出 PPT v1 + demo录屏备份", "刷网课", "课程作业（一部分）", "软工实验安排分工", "复盘经验总结"], done: [0,0,1,1,1,1], diary: "明天继续，，写作业、复盘、整理笔记、完成实验2、刷网课、做科研。", q: { study: "刷网课✓；课程作业一部分✓；软工实验分工✓；复盘✓", mistakes: "—", bonus: "PPT v1未完成（汇报材料冲刺中，最晚国庆前）", virtue: "—" }, cats: { study: 1, bonus: 0, virtue: 0 }, score: 40, note: "4/6达打卡线(需4)，打卡成功streak归5创新高；PPT明日冲刺" },
   ],
   weeklyReviews: [
     { week: 202636, date: "2026-09-07", rate: 27, good: "社会实践结项提交、国创赛申报、志愿参加——三件大事全部落地；9.3当天DDL+PPT框架+平台UI+概率论作业也完成了", weak: "计划远超完成：没预估好社会实践和国创赛的耗时，科研冲刺Day1-7全部顺延，作业拖到周日夜还在赶；早起连续失败，熬夜太多（两大DDL是主因）", nextGoals: ["科研必须推进：冲刺Day1-12，汇报9.18，最晚线国庆前", "班长/志愿委员PPT + 一分钟演讲稿（还没做好）", "决定历史/软工实践要不要当组长", "优化Future is Now：修bug、随课表变化、周一少布置留机动", "大创赶紧分工安排任务", "整理每门专业课的自学资源清单（课少但要自己补的多）", "早起：本周6天里至少3天7:30起床", "教训：DDL堆积时第一件事=调整系统任务安排，每天聚焦重点"],
@@ -46,7 +47,7 @@ const DATA = {
       tue: ["上午10:00六级报名（硬时间！）"],
       wed: [],
       thu: [],
-      fri: [],
+      fri: ["概率论作业", "计组学习", "数电学习", "大物学习", "软工导论学习", "【前端Day1】个人介绍页（MDN+B站入门课）", "科研Day1-3重启：M0环境卡收尾+机制读ViT+CIFAR-10框架+实验协议+M1分类对照", "工业设计比赛", "网课考试"],
       sat: [],
       sun: [],
     },
@@ -144,18 +145,6 @@ const DATA = {
     "2026-09-13": { time: "周日下午3h", focus: "Day7 深读ContextBLIP", items: [
       { t: "深读 ContextBLIP (ACL Findings 2024)：intra/inter-context alignment", tag: "精读" },
       { t: "浏览官方仓库估算复现成本（不重训练）；输出论文证据卡 P2", tag: "输出" },
-    ]},
-    "2026-09-16": { time: "19:00-22:00", focus: "Day10 汇报材料", items: [
-      { t: "做8页PPT（结论式标题）；整理仓库README；M1/M2/M3只保留最可信两项", tag: "汇报" },
-      { t: "输出 PPT v1 + demo录屏备份", tag: "输出" },
-    ]},
-    "2026-09-17": { time: "傍晚+晚", focus: "Day11 彩排", items: [
-      { t: "两次计时彩排（≤10分钟）；「老师追问清单」自测；向老师确认明天时间", tag: "汇报" },
-      { t: "输出 PPT v2 + 问答卡；准备3个请教问题", tag: "输出" },
-    ]},
-    "2026-09-18": { time: "汇报日（最晚线：国庆前）", focus: "Day12 首次汇报", items: [
-      { t: "完成首次汇报（8页、8-10分钟）；现场记录老师的方向/任务/代码/算力/汇报节奏建议", tag: "汇报" },
-      { t: "会后2小时内把反馈转成 继续/停止/待确认 三栏", tag: "其他" },
     ]},
   },
 };

@@ -2,7 +2,7 @@
 // days[]: {date,dow,week,plan:[],q:{study,mistakes,bonus,virtue},cats:{study,bonus,virtue},score,note}
 // researchPlan: 日期 → {time, items:[{t,tag}], focus}  tag ∈ 精读/泛读/代码/输出/汇报/其他
 const DATA = {
-  meta: { name: "", version: 11, updated: "2026-09-19(补录9.18，6/10)", workbench: "工作台.html", dashboard: "dashboard.html" },
+  meta: { name: "", version: 12, updated: "2026-09-19(周六课业日已排)", workbench: "工作台.html", dashboard: "dashboard.html" },
   anchors: {
     semester: "2026-2027 大二上（8.31开始上课）",
     gpaTarget: "期末加权≥91 → 累计绩点≥3.71（大二末3.80）",
@@ -50,7 +50,7 @@ const DATA = {
       wed: [],
       thu: [],
       fri: ["概率论作业", "计组学习", "数电学习", "大物学习", "软工导论学习", "【前端Day1】个人介绍页（MDN+B站入门课）", "科研Day1-3重启：M0环境卡收尾+机制读ViT+CIFAR-10框架+实验协议+M1分类对照", "工业设计比赛", "网课考试"],
-      sat: [],
+      sat: ["概率论作业", "大物学习", "实验2（软工实验）", "爬虫报告查看"],
       sun: [],
     },
     "2026-08-24": {

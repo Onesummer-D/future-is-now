@@ -2,7 +2,12 @@
 // days[]: {date,dow,week,plan:[],q:{study,mistakes,bonus,virtue},cats:{study,bonus,virtue},score,note}
 // researchPlan: 日期 → {time, items:[{t,tag}], focus}  tag ∈ 精读/泛读/代码/输出/汇报/其他
 const DATA = {
-  meta: { name: "", version: 14, updated: "2026-09-19晚(移除每日任务：刷网课)", workbench: "工作台.html", dashboard: "dashboard.html" },
+  meta: { name: "", version: 15, updated: "2026-09-24接管补录：9.20-9.24未验收，不改原计划", workbench: "工作台.html", dashboard: "dashboard.html" },
+  handoff: {
+    asOf: "2026-09-24",
+    gaps: ["2026-09-20", "2026-09-21", "2026-09-22", "2026-09-23", "2026-09-24"],
+    policy: "对无法回忆的日期只保留未验收状态，不推断完成或失败，不改原计划，不重排。"
+  },
   anchors: {
     semester: "2026-2027 大二上（8.31开始上课）",
     gpaTarget: "期末加权≥91 → 累计绩点≥3.71（大二末3.80）",

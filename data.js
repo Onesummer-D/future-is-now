@@ -2,7 +2,7 @@
 // days[]: {date,dow,week,plan:[],q:{study,mistakes,bonus,virtue},cats:{study,bonus,virtue},score,note}
 // researchPlan: 日期 → {time, items:[{t,tag}], focus}  tag ∈ 精读/泛读/代码/输出/汇报/其他
 const DATA = {
-  meta: { name: "", version: 22, updated: "2026-09-28(家人面板只显示已验收日，9.28今日计划不再误显示为未完成)", workbench: "工作台.html", dashboard: "dashboard.html" },
+  meta: { name: "", version: 23, updated: "2026-09-28(9.28清单对齐8项：汇报/答辩/作业/实验三/大创/四新赛/官渡之战/国数媒)", workbench: "工作台.html", dashboard: "dashboard.html" },
   handoff: {
     asOf: "2026-09-27",
     gaps: ["2026-09-20", "2026-09-21", "2026-09-22"],
@@ -77,7 +77,7 @@ const DATA = {
       sun: ["写数字逻辑和计组作业", "推进实验三", "准备软工导论PPT汇报", "取快递"],
     },
     "2026-09-28": {
-      mon: ["好好上课", "完成答辩和汇报", "完成国庆作业排期与分工", "完成当日作业"],
+      mon: ["完成汇报", "完成答辩", "写作业", "推进实验三", "查看大创推动进度（准备国庆安排）", "询问四新赛是否需要帮助", "官渡之战继续推进", "全国数媒比赛查看"],
       tue: ["好好上课", "推进国庆作业", "国庆后小考复习", "早起并早睡"],
       wed: ["好好上课", "完成作业", "不强求早起"],
     },

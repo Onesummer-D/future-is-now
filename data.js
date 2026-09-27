@@ -2,7 +2,7 @@
 // days[]: {date,dow,week,plan:[],q:{study,mistakes,bonus,virtue},cats:{study,bonus,virtue},score,note}
 // researchPlan: 日期 → {time, items:[{t,tag}], focus}  tag ∈ 精读/泛读/代码/输出/汇报/其他
 const DATA = {
-  meta: { name: "", version: 21, updated: "2026-09-28补录第四周复盘并安排国庆周", workbench: "工作台.html", dashboard: "dashboard.html" },
+  meta: { name: "", version: 22, updated: "2026-09-28(家人面板只显示已验收日，9.28今日计划不再误显示为未完成)", workbench: "工作台.html", dashboard: "dashboard.html" },
   handoff: {
     asOf: "2026-09-27",
     gaps: ["2026-09-20", "2026-09-21", "2026-09-22"],

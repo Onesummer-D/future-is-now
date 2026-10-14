@@ -205,9 +205,10 @@ function mondayOffset(off){const d=new Date(today);d.setDate(d.getDate()-((dow||
 const wk=DATA.weekPlans[mondayOffset(0)]||DATA.weekPlans[mondayOffset(-1)]||{};
 const wKey=["sun","mon","tue","wed","thu","fri","sat"][dow];
 const recItems=(DATA.dailyRecurring||[]).map(t=>({t,tag:"每日"}));
-const studyItems=[...recItems,...(wk[wKey]||[]).map(t=>({t,tag:t.startsWith("【前端")?"前端":"学业"}))];
+const dayPlan=DATA.days.find(d=>d.date===TODAY);
+const studyItems=dayPlan?dayPlan.plan.map(t=>({t,tag:"学业"})):[...recItems,...(wk[wKey]||[]).map(t=>({t,tag:t.startsWith("【前端")?"前端":"学业"}))];
 const rp=DATA.researchPlan[TODAY];
-const resItems=rp?rp.items.map(i=>({t:i.t,tag:i.tag})):[];
+const resItems=!dayPlan&&rp?rp.items.map(i=>({t:i.t,tag:i.tag})):[];
 const items=[...resItems,...studyItems];
 
 function render(){
@@ -268,7 +269,8 @@ const tmRp=DATA.researchPlan[TMR];
 const tmMonday=new Date(tm.getFullYear(),tm.getMonth(),tm.getDate()-((tm.getDay()||7)-1));
 const tmWk=DATA.weekPlans[dstr(tmMonday)]||{};
 const tmDowKey=["sun","mon","tue","wed","thu","fri","sat"][tm.getDay()];
-const baseTm=[...((tmRp&&tmRp.items.map(i=>i.t))||[]),...((tmWk[tmDowKey]||[]))];
+const tmDayPlan=DATA.days.find(d=>d.date===TMR);
+const baseTm=tmDayPlan?tmDayPlan.plan:[...((tmRp&&tmRp.items.map(i=>i.t))||[]),...((tmWk[tmDowKey]||[]))];
 let tmList=[];
 function escT(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 function renderTomorrow(){

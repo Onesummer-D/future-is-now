@@ -2,7 +2,7 @@
 // days[]: {date,dow,week,plan:[],q:{study,mistakes,bonus,virtue},cats:{study,bonus,virtue},score,note}
 // researchPlan: 日期 → {time, items:[{t,tag}], focus}  tag ∈ 精读/泛读/代码/输出/汇报/其他
 const DATA = {
-  meta: { name: "", version: 77, updated: "2026-11-02更新第八周复盘", workbench: "工作台.html", dashboard: "dashboard.html" },
+  meta: { name: "", version: 78, updated: "2026-11-02更新第八周复盘", workbench: "工作台.html", dashboard: "dashboard.html" },
   handoff: {
     asOf: "2026-10-08",
     gaps: ["2026-09-20", "2026-09-21", "2026-09-22"],
@@ -72,8 +72,8 @@ const DATA = {
     { date: "2026-10-30", dow: "五", week: 202644, plan: ["计组实验完成", "推进实验三", "推进Ripple", "询问共同体BGM进度", "复习大物第9章", "复习2章数电", "复习两章前端"], done: [0,1,1,1,1,0,1], q: { study: "推进实验三✓；复习大物第9章✓；复习两章前端✓；计组实验、复习2章数电未完成", mistakes: "待记录", bonus: "询问共同体BGM进度✓；推进Ripple✓（按既有口径不计增值分）", virtue: "—" }, cats: { study: 1, bonus: 1, virtue: 0 }, score: 70, note: "用户于2026-10-31补验收：5/7完成，达到5项打卡线；得分70（学业40+增值30）。共同体BGM进度询问计增值；Ripple记为完成但不计增值分。10月28日至30日连续达标3天；收获、疑问和明日第一动作待补报。" },
     { date: "2026-10-31", dow: "六", week: 202644, plan: ["计组实验", "推进实验三", "推进Ripple", "复习大物第9章剩余", "复习2章概率论", "志愿活动"], done: [0,0,1,1,1,1], q: { study: "复习大物第9章剩余✓；复习2章概率论✓；计组实验、推进实验三未完成", mistakes: "待记录", bonus: "推进Ripple✓（按既有口径不计增值分）", virtue: "志愿活动✓" }, cats: { study: 1, bonus: 0, virtue: 1 }, score: 70, note: "用户于2026-11-01补验收：4/6完成，达到4项打卡线；得分70（学业40+素质30）。Ripple记为完成但不计增值分。10月28日至31日连续达标4天；收获、疑问和明日第一动作待补报。" },
     { date: "2026-11-01", dow: "日", week: 202644, plan: ["实验1完成", "推进实验三", "推进Ripple", "概率论作业完成", "计组作业完成", "复习概率论1章并做1/3题"], done: [0,1,1,1,1,0], q: { study: "推进实验三✓；概率论作业完成✓；计组作业完成✓；复习概率论1章并做1/3题未完成；实验1未完成", mistakes: "待记录", bonus: "推进Ripple✓（按既有口径不计增值分）", virtue: "—" }, cats: { study: 1, bonus: 0, virtue: 0 }, score: 40, note: "用户于2026-11-02补验收：4/6完成，达到4项打卡线；得分40（学业40）。Ripple记为完成但不计增值分。收获、疑问和明日第一动作待补报。" },
-    { date: "2026-11-02", dow: "一", week: 202645, plan: ["实验1", "实验三准备收尾", "推进Ripple", "复习大物2节课", "复习概率论2章", "完成大物作业"], done: [0,0,0,0,0,0], q: { study: "待验收", mistakes: "待记录", bonus: "待验收", virtue: "—" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: null, note: "用户于2026-11-02创建今日六项计划，全部待验收。" },
-    { date: "2026-11-03", dow: "二", week: 202645, plan: ["实验1", "实验三准备收尾", "完成大物作业", "可选：复习概率论2章"], done: [0,0,0,0], q: { study: "待验收", mistakes: "待记录", bonus: "待验收", virtue: "—" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: null, note: "根据11月2日待验收事项生成今日计划；前三项为必做，第四项可选。" },
+    { date: "2026-11-02", dow: "一", week: 202645, plan: ["实验1", "实验三准备收尾", "推进Ripple", "复习大物2节课", "复习概率论2章", "完成大物作业"], done: [1,0,1,0,1,1], q: { study: "实验1✓；复习概率论2章✓；完成大物作业✓；实验三准备收尾、复习大物2节课未完成", mistakes: "待记录", bonus: "推进Ripple✓（按既有口径不计增值分）", virtue: "—" }, cats: { study: 1, bonus: 0, virtue: 0 }, score: 40, note: "用户于2026-11-04验收：4/6完成，达到4项打卡线；得分40（学业40）。Ripple记为完成但不计增值分；收获、疑问和明日第一动作待补报。" },
+    { date: "2026-11-03", dow: "二", week: 202645, plan: ["推进实验三", "推进Ripple", "复习大物2节课", "做概率论一章1/2题目", "做完大物作业"], done: [0,0,0,0,0], q: { study: "待验收", mistakes: "待记录", bonus: "待验收", virtue: "—" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: null, note: "用户于2026-11-04创建11月3日五项计划，全部待验收。" },
     { date: "2026-11-04", dow: "三", week: 202645, plan: ["实验1", "实验三准备收尾", "完成大物作业", "可选：复习概率论2章"], done: [0,0,0,0], q: { study: "待验收", mistakes: "待记录", bonus: "待验收", virtue: "—" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: null, note: "根据11月3日待验收事项生成今日计划；前三项为必做，第四项可选。" },
   ],
   weeklyReviews: [

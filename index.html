@@ -71,6 +71,11 @@
 </header>
 
 <section>
+  <h2><b>01</b>今日计划与作息</h2>
+  <div class="card" id="todayPlan"><div class="empty">今日计划加载中</div></div>
+</section>
+
+<section>
   <div class="row">
     <div class="card stat">
       <div class="lab">连续打卡</div>
@@ -97,12 +102,12 @@
 </section>
 
 <section>
-  <h2><b>01</b>近8周完成率</h2>
+  <h2><b>02</b>近8周完成率</h2>
   <div class="card"><div class="bars" id="trend"></div></div>
 </section>
 
 <section>
-  <h2><b>02</b>每日验收记录（最近7天）</h2>
+  <h2><b>03</b>每日验收记录（最近7天）</h2>
   <div class="card" style="padding:8px 12px">
     <table id="dayTable">
       <thead><tr><th>日期</th><th>当日计划</th><th>收获 / 疑问</th><th>学业</th><th>科研</th><th>素质</th><th>得分</th></tr></thead>
@@ -113,7 +118,7 @@
 </section>
 
 <section>
-  <h2><b>03</b>历史验收记录（最近60天）</h2>
+  <h2><b>04</b>历史验收记录（最近60天）</h2>
   <div class="card" style="padding:8px 12px">
     <table id="histTable">
       <thead><tr><th>日期</th><th>当日计划</th><th>收获 / 疑问</th><th>学业</th><th>科研</th><th>素质</th><th>得分</th></tr></thead>
@@ -124,12 +129,12 @@
 </section>
 
 <section>
-  <h2><b>04</b>最近一次周复盘</h2>
+  <h2><b>05</b>最近一次周复盘</h2>
   <div class="card rev" id="review"><div class="empty">每周日00:30自动生成：完成率统计、最好与最薄弱项、下周计划</div></div>
 </section>
 
 <section>
-  <h2><b>05</b>学期锚点</h2>
+  <h2><b>06</b>学期锚点</h2>
   <div class="card"><ul class="anchors" id="anchors"></ul></div>
 </section>
 
@@ -166,6 +171,16 @@ const tStr=(d=>d.getFullYear()+"-"+p0(d.getMonth()+1)+"-"+p0(d.getDate()))(new D
 const thisWeek=days.filter(d=>d.date>=cutStr&&d.date<=tStr);
 
 $("upd").textContent=DATA.meta.updated||"—";
+
+const nowDate=new Date();
+const pad2=n=>String(n).padStart(2,"0");
+const todayKey=nowDate.getFullYear()+"-"+pad2(nowDate.getMonth()+1)+"-"+pad2(nowDate.getDate());
+const todayPlan=DATA.days.find(d=>d.date===todayKey);
+if(todayPlan){
+  const routine=((todayPlan.note||"").match(/作息记录：(.+?)(?:。|$)/)||[])[1]||"未记录";
+  const planHtml=(todayPlan.plan||[]).map(p=>"<li>"+esc(p)+"</li>").join("");
+  $("todayPlan").innerHTML="<div style=\"font-size:14px;color:var(--dim);margin-bottom:8px\">日期："+esc(todayPlan.date)+" · 状态："+(todayPlan.score===null?"待验收":"已验收")+"</div><ul style=\"margin:0 0 12px 20px\">"+planHtml+"</ul><div style=\"border-top:1px solid var(--line);padding-top:10px;color:var(--acc);font-weight:600\">作息："+esc(routine)+"</div>";
+}
 
 const st=DATA.streak||{current:0,best:0};
 $("streak").innerHTML=st.current+"<small>天</small>";

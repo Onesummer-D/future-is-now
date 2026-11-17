@@ -2,7 +2,7 @@
 // days[]: {date,dow,week,plan:[],q:{study,mistakes,bonus,virtue},cats:{study,bonus,virtue},score,note}
 // researchPlan: 日期 → {time, items:[{t,tag}], focus}  tag ∈ 精读/泛读/代码/输出/汇报/其他
 const DATA = {
-  meta: { name: "", version: 99, updated: "2026-11-17创建今日计划", workbench: "工作台.html", dashboard: "dashboard.html" },
+  meta: { name: "", version: 100, updated: "2026-11-17按用户要求修订十项计划", workbench: "工作台.html", dashboard: "dashboard.html" },
   handoff: {
     asOf: "2026-10-08",
     gaps: ["2026-09-20", "2026-09-21", "2026-09-22"],
@@ -85,7 +85,7 @@ const DATA = {
     { date: "2026-11-12", dow: "四", week: 202645, plan: ["复习概率论3、4章", "完成概率论连续型练习题剩余50%", "复习大物第8、9章、做第8章题", "推进Ripple", "推进实验三"], done: [0,0,0,0,0], q: { study: "待验收", mistakes: "待记录", bonus: "待验收", virtue: "待验收" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: null, note: "用户于2026-11-12创建今日五项计划，全部待验收；作息记录：01:00睡，09:00起。" },
     { date: "2026-11-15", dow: "日", week: 202645, plan: ["完成实验三", "复习概率论3、4章并完成连续型练习题剩余50%", "复习大物第8、9章并做第8章题", "可选：推进Ripple"], done: [0,0,0,0], q: { study: "待验收", mistakes: "待记录", bonus: "待验收", virtue: "待验收" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: null, note: "因13、14号没有新增计划记录，沿用12号待验收核心课业生成今日计划；前三项为必做，第四项为可选，全部待验收。" },
     { date: "2026-11-16", dow: "一", week: 202646, plan: ["完成实验三", "复习概率论3、4章并完成连续型练习题剩余50%", "复习大物第8、9章并做第8章题", "可选：推进Ripple"], done: [0,0,0,0], q: { study: "待验收", mistakes: "待记录", bonus: "待验收", virtue: "待验收" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: null, note: "承接11月15日尚未验收的核心课业生成今日计划；前三项为必做，第四项为可选，全部待验收。" },
-    { date: "2026-11-17", dow: "二", week: 202646, plan: ["完成实验三", "复习概率论3、4章并完成连续型练习题剩余50%", "复习大物第8、9章并做第8章题", "可选：推进Ripple"], done: [0,0,0,0], q: { study: "待验收", mistakes: "待记录", bonus: "待验收", virtue: "待验收" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: null, note: "承接15、16号仍待验收的核心课业生成今日计划；前三项为必做，第四项为可选，全部待验收。" },
+    { date: "2026-11-17", dow: "二", week: 202646, plan: ["听讲座拍照片", "背单词半小时", "推进Ripple", "学概率论第四章数字特征", "计组作业", "数字逻辑作业", "数字逻辑学1章", "计组学1章", "软件工程导论2章", "实验三1、2、3部分，写至少1/2"], done: [0,0,0,0,0,0,0,0,0,0], q: { study: "待验收", mistakes: "待记录", bonus: "待验收", virtue: "待验收" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: null, note: "用户于2026-11-17重新指定今日十项计划，取代此前自动生成的四项版本；全部待验收。" },
   ],
   weeklyReviews: [
     { week: 202636, date: "2026-09-07", rate: 27, good: "社会实践结项提交、国创赛申报、志愿参加——三件大事全部落地；9.3当天DDL+PPT框架+平台UI+概率论作业也完成了", weak: "计划远超完成：没预估好社会实践和国创赛的耗时，科研冲刺Day1-7全部顺延，作业拖到周日夜还在赶；早起连续失败，熬夜太多（两大DDL是主因）", nextGoals: ["科研必须推进：冲刺Day1-12，汇报9.18，最晚线国庆前", "班长/志愿委员PPT + 一分钟演讲稿（还没做好）", "决定历史/软工实践要不要当组长", "优化Future is Now：修bug、随课表变化、周一少布置留机动", "大创赶紧分工安排任务", "整理每门专业课的自学资源清单（课少但要自己补的多）", "早起：本周6天里至少3天7:30起床", "教训：DDL堆积时第一件事=调整系统任务安排，每天聚焦重点"],

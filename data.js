@@ -2,7 +2,7 @@
 // days[]: {date,dow,week,plan:[],q:{study,mistakes,bonus,virtue},cats:{study,bonus,virtue},score,note}
 // researchPlan: 日期 → {time, items:[{t,tag}], focus}  tag ∈ 精读/泛读/代码/输出/汇报/其他
 const DATA = {
-  meta: { name: "", version: 107, updated: "2026-11-23验收22号并创建今日计划", workbench: "工作台.html", dashboard: "dashboard.html" },
+  meta: { name: "", version: 108, updated: "2026-11-23补录今日作息", workbench: "工作台.html", dashboard: "dashboard.html" },
   handoff: {
     asOf: "2026-10-08",
     gaps: ["2026-09-20", "2026-09-21", "2026-09-22"],
@@ -91,7 +91,7 @@ const DATA = {
     { date: "2026-11-20", dow: "五", week: 202646, plan: ["背单词半小时", "数字逻辑学2章", "完成所有大物实验报告", "推进大创", "推进ripple", "前端学2章"], done: [1,0,1,1,1,1], q: { study: "背单词半小时✓；完成所有大物实验报告✓；推进大创✓；推进ripple✓；前端学2章✓；数字逻辑学2章未完成", mistakes: "待记录", bonus: "推进ripple✓（按既有口径不计增值分）", virtue: "—" }, cats: { study: 1, bonus: 0, virtue: 0 }, score: 83, note: "用户于2026-11-21验收：完成第1、3、4、5、6项，共5/6项，按完成比例计83分；未完成第2项。达到打卡线，连续打卡记1天。" },
     { date: "2026-11-21", dow: "六", week: 202646, plan: ["背单词半小时", "数字逻辑学2章", "完成软工编程实验报告", "推进实验四", "推进大创", "推进Ripple", "前端学2章"], done: [1,1,1,0,0,1,1], q: { study: "背单词半小时✓；数字逻辑学2章✓；完成软工编程实验报告✓；推进Ripple✓；前端学2章✓；推进实验四、推进大创未完成", mistakes: "待记录", bonus: "推进Ripple✓（按既有口径不计增值分）", virtue: "—" }, cats: { study: 1, bonus: 0, virtue: 0 }, score: 71, note: "用户于2026-11-22验收：完成第1、2、3、6、7项，共5/7项，按完成比例计71分；未完成第4、5项。达到打卡线，连续打卡记2天。" },
     { date: "2026-11-22", dow: "日", week: 202646, plan: ["做志愿", "背单词半小时", "看看六级阅读", "休息"], done: [1,1,1,1], q: { study: "背单词半小时✓；看看六级阅读✓；休息✓", mistakes: "待记录", bonus: "—", virtue: "做志愿✓" }, cats: { study: 1, bonus: 0, virtue: 1 }, score: 100, note: "用户于2026-11-23验收：四项全部完成，按完成比例计100分；达到打卡线，连续打卡记3天。" },
-    { date: "2026-11-23", dow: "一", week: 202647, plan: ["背单词半小时", "数字逻辑学2章", "推进实验四", "推进大创", "推进Ripple", "前端学2章", "学一章概率论"], done: [0,0,0,0,0,0,0], q: { study: "待验收", mistakes: "待记录", bonus: "待验收", virtue: "待验收" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: null, note: "用户于2026-11-23创建今日七项计划，全部待验收。" },
+    { date: "2026-11-23", dow: "一", week: 202647, plan: ["背单词半小时", "数字逻辑学2章", "推进实验四", "推进大创", "推进Ripple", "前端学2章", "学一章概率论"], done: [0,0,0,0,0,0,0], q: { study: "待验收", mistakes: "待记录", bonus: "待验收", virtue: "待验收" }, cats: { study: 0, bonus: 0, virtue: 0 }, score: null, note: "用户于2026-11-23创建今日七项计划，全部待验收。作息记录：01:00睡，09:00起。" },
   ],
   weeklyReviews: [
     { week: 202636, date: "2026-09-07", rate: 27, good: "社会实践结项提交、国创赛申报、志愿参加——三件大事全部落地；9.3当天DDL+PPT框架+平台UI+概率论作业也完成了", weak: "计划远超完成：没预估好社会实践和国创赛的耗时，科研冲刺Day1-7全部顺延，作业拖到周日夜还在赶；早起连续失败，熬夜太多（两大DDL是主因）", nextGoals: ["科研必须推进：冲刺Day1-12，汇报9.18，最晚线国庆前", "班长/志愿委员PPT + 一分钟演讲稿（还没做好）", "决定历史/软工实践要不要当组长", "优化Future is Now：修bug、随课表变化、周一少布置留机动", "大创赶紧分工安排任务", "整理每门专业课的自学资源清单（课少但要自己补的多）", "早起：本周6天里至少3天7:30起床", "教训：DDL堆积时第一件事=调整系统任务安排，每天聚焦重点"],
